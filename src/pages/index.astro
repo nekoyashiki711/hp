@@ -1,0 +1,266 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaPair from '../components/CtaPair.astro';
+import CtaLine from '../components/CtaLine.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Flow from '../components/Flow.astro';
+import Dummy from '../components/Dummy.astro';
+import Cat from '../components/Cat.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, PATHS, hasLine } from '../config/site';
+
+const worries = [
+  '「あの人しか分からない」が、まだ残っている',
+  '月末になると、机の上が紙で埋まる',
+  '人も、協力会社も、なかなか見つからない',
+  '会社の顔になるHPが、止まったまま',
+  '入れたはずの仕組みが、いつのまにか眠っている',
+  '本業だけでは、この先が少し不安',
+];
+const services = [
+  { icon: 'smartphone', title: '業務のデジタル化', text: '紙の流れを、スマホの流れに。事務のお手伝いも' },
+  { icon: 'browser', title: 'HP制作・改修', text: 'つくった後も、一緒に育てていく' },
+  { icon: 'pen', title: 'デザイン', text: '会社の「らしさ」を、名刺から看板まで' },
+  { icon: 'search', title: 'マーケティング', text: '検索、地図、SNS。見つけてもらう入口を' },
+  { icon: 'people', title: '人と企業をつなぐ', text: '採用と、仲間さがしのお手伝い' },
+];
+const gallery = ['HP制作', '車両広告', 'チラシ', '名刺', '看板', '街フェス', 'ポスター', '事業資料'];
+const flow = [
+  { title: 'まずは、ひと言', text: hasLine ? 'LINEかフォームで、お気軽にどうぞ' : 'フォームかお電話で、お気軽にどうぞ' },
+  { title: 'お話を聞かせてください', text: '訪問またはオンラインで、じっくりと' },
+  { title: 'ちょうどいい形をご提案', text: 'ご予算に合わせて、お見積もりをお出しします', free: true },
+  { title: 'かたちにして、その先も', text: '導入・制作のあとも、となりで伴走します' },
+];
+---
+<Base
+  title="nekoyashiki｜宮城の運送・建築のIT化、HP制作、デザイン、集客の相談窓口"
+  description="宮城県の運送会社・建築会社を中心に、業務のIT・DX化、HP制作、デザイン、集客、新しい収益づくりを支援する地域密着の相談窓口。仙台市から宮城県全域に伺います。相談無料。"
+  footerCat
+>
+  <!-- 1 HERO -->
+  <section class="hero has-cats">
+    <div class="bg-cats" aria-hidden="true">
+      <Cat name="sit" width={120} widthSp={72} motion="drift" d={70} r0={-3} r1={3} style="left: 42%; top: 60%;" />
+    </div>
+    <div class="container hero__inner">
+      <p class="hero__vertical" aria-hidden="true">nekoyashiki.life</p>
+      <div class="g12 g12--center">
+        <div class="span-5 hero__text">
+          <p class="kicker hero__kicker"><span>宮城の仕事と暮らしに<span class="pc-only">、IT・デザイン・発信を</span></span></p>
+          <h1 class="hero__title">紙の仕事を、<br />てのひらへ。</h1>
+          <p class="hero__lead">経営の視点、現場の視点、事務の視点。3つを知っているからできる仕組みづくりから、伝えること、見つけてもらうことまで。ひとつの窓口で、まとめてお手伝いします。</p>
+          <CtaPair class="cta-pair--stack hero__ctas" />
+          <p class="hero__note">相談無料・宮城県全域に伺います</p>
+        </div>
+        <div class="at-7-6 hero__visual">
+          <Dummy class="hero__photo1" label="DUMMY PHOTO — 宮城の道路・現場の風景" />
+          <div class="hero__photo2" aria-hidden="true"><Icon name="logo" size={150} stroke="#FFFFFF" width={1.8} /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 ENTRY -->
+  <section class="section--light entry">
+    <div class="container">
+      <SectionHead en="FOR YOU" title="ご相談の入口" />
+      <div class="entry__cards">
+        <a href={PATHS.business} class="entry-card">
+          <Dummy class="entry-card__photo dummy--2" label="DUMMY PHOTO — 事務所・現場で働く人" />
+          <div class="entry-card__body">
+            <p class="entry-card__en" lang="en">FOR BUSINESS</p>
+            <p class="entry-card__for"><span class="pc-only">事業者様へ<small>（法人・個人事業主の方）</small></span><span class="sp-only">法人・個人事業主の方</span></p>
+            <h3 class="entry-card__title">仕事の流れを、<br />もっと軽やかに。</h3>
+            <p class="entry-card__text">新しい収益づくり、デジタル化、HP、デザイン、集客、採用まで。</p>
+            <span class="btn btn--primary">事業者様へ<span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+        <a href={PATHS.personal} class="entry-card">
+          <Dummy class="entry-card__photo dummy--3" label="DUMMY PHOTO — 暮らし・家まわり" />
+          <div class="entry-card__body">
+            <p class="entry-card__en" lang="en">FOR PERSONAL</p>
+            <p class="entry-card__for"><span class="pc-only">個人様へ</span><span class="sp-only">個人様</span></p>
+            <h3 class="entry-card__title">暮らしの「ちょっと困った」に、<br class="pc-only" />すぐ動く。</h3>
+            <p class="entry-card__text">お引越しから、家まわりの小さな修理まで。</p>
+            <span class="btn btn--primary">個人様へ<span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 PICK UP : 新しい収益づくり -->
+  <section class="section--green pickup">
+    <div class="container g12 g12--center">
+      <div class="span-6 pickup__text">
+        <SectionHead en="PICK UP — NEW REVENUE" invert />
+        <h2 class="pickup__title">走るトラックを、<br />広告に。</h2>
+        <p class="pickup__lead">本業はそのままに、もうひとつの柱を。今ある車両や場所を、新しい売上へつなげる「新しい収益づくり」。nekoyashikiが、いま一番お届けしたいサービスです。</p>
+        <div class="pickup__tags"><span class="tag tag--line">車両広告</span><span class="tag tag--line">本業以外の売上</span><span class="tag tag--line">今ある資産の活用</span></div>
+        <div class="pickup__btns">
+          <CtaLine label="収益づくりを相談する" fallbackLabel="収益づくりを相談する" class="btn btn--white" iconSize={20} />
+          <a href={`${PATHS.services}#revenue`} class="btn btn--outline-white">くわしく見る<span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="at-8-5 pickup__visual">
+        <Dummy class="pickup__photo" tone="green" label="DUMMY PHOTO — 広告を載せたトラック" />
+        <div class="stat-card">
+          <p class="stat-card__num"><span>約</span><b>30</b><span>台</span></p>
+          <p class="stat-card__text">運送会社さまの車両に、<br class="pc-only" />広告の掲載が決定</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 WORRIES -->
+  <section class="section worries has-cats">
+    <div class="bg-cats" aria-hidden="true">
+      <Cat name="loaf" width={280} motion="drift" d={-120} r0={0} r1={-2} style="left: max(20px, calc((100% - 1360px) / 2 + 40px)); bottom: 120px;" hideSp />
+    </div>
+    <div class="container g12">
+      <div class="span-5">
+        <SectionHead en="WORRIES" title="こんな「いつものこと」、<br />ありませんか。" class="h2--flush" />
+      </div>
+      <ul class="at-7-6 checks">
+        {worries.map((w) => <li><span>{w}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5 SERVICES -->
+  <section class="section section--light services-top has-cats">
+    <div class="bg-cats bg-cats--visible" aria-hidden="true">
+      <Cat name="peek" width={160} motion="peek" from={20} style="right: max(60px, calc((100% - 1360px) / 2 + 160px)); top: calc(var(--cw) * -0.4375);" hideSp />
+    </div>
+    <div class="container">
+      <SectionHead en="SERVICE" title="できること" />
+      <div class="svc-grid">
+        <a href={`${PATHS.services}#revenue`} class="svc-card svc-card--pick">
+          <div class="svc-card__top">
+            <Icon name="truck" class="svc-card__icon" size={34} />
+            <span class="badge-pick" lang="en">PICK UP</span>
+          </div>
+          <div class="svc-card__body">
+            <div class="svc-card__titlerow"><h3 class="svc-card__title">新しい収益づくり</h3><span class="badge-pick svc-card__pick-sp" lang="en">PICK UP</span></div>
+            <p class="svc-card__text">本業のそばに、もうひとつの柱を <span aria-hidden="true" class="svc-card__go">→</span></p>
+          </div>
+        </a>
+        {services.map((s) => (
+          <div class="svc-card">
+            <Icon name={s.icon} class="svc-card__icon" size={34} />
+            <div class="svc-card__body">
+              <h3 class="svc-card__title">{s.title}</h3>
+              <p class="svc-card__text">{s.text}</p>
+            </div>
+          </div>
+        ))}
+        <a href={PATHS.personal} class="svc-card">
+          <Icon name="house" class="svc-card__icon" size={34} />
+          <div class="svc-card__body">
+            <div class="svc-card__titlerow"><h3 class="svc-card__title">暮らしの困りごと</h3><span class="badge-line">個人様</span></div>
+            <p class="svc-card__text">お引越しから、家まわりの小さな修理まで <span aria-hidden="true" class="svc-card__go">→</span></p>
+          </div>
+        </a>
+        <a href={PATHS.services} class="svc-card svc-card--all">
+          <span class="eyebrow-plain" lang="en">ALL SERVICES</span>
+          <span>内容と料金の目安は、<br />「できること」のページでご紹介しています。</span>
+          <span class="btn btn--white-plain">できることをすべて見る<span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+      <div class="svc-all-sp">
+        <p>内容と料金の目安は、「できること」のページでご紹介しています。</p>
+        <a href={PATHS.services} class="btn btn--outline">できることをすべて見る<span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 REASONS -->
+  <section class="section has-cats">
+    <div class="bg-cats" aria-hidden="true">
+      <Cat name="back" width={140} motion="drift" d={90} r0={2} r1={-2} style="right: max(40px, calc((100% - 1360px) / 2 + 120px)); top: 110px;" hideSp />
+    </div>
+    <div class="container">
+      <SectionHead en="WHY NEKOYASHIKI" title="選ばれる理由" class="reasons__head" />
+      <div class="reasons__grid">
+        <div class="reason">
+          <span class="num" data-n="01" aria-hidden="true"></span>
+          <h3 class="reason__title">経営と現場、<br class="pc-only" />どちらの言葉もわかる</h3>
+          <p class="reason__text">経営の目線と、現場・事務所の実務を約10年。数字の話も、現場の話も、同じテーブルでお話しします。</p>
+        </div>
+        <div class="reason">
+          <span class="num" data-n="02" aria-hidden="true"></span>
+          <h3 class="reason__title">窓口は、ひとつ</h3>
+          <p class="reason__text">仕組みも、HPも、デザインも、発信も。ばらばらに頼まず、まとめてご相談いただけます。</p>
+        </div>
+        <div class="reason">
+          <span class="num" data-n="03" aria-hidden="true"></span>
+          <h3 class="reason__title">杜の都の、すぐそばで</h3>
+          <p class="reason__text">宮城県内どこへでも伺います。使いこなせるようになるまで、となりで伴走します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 WORKS -->
+  <section class="section section--light">
+    <div class="container">
+      <SectionHead en="WORKS" title="これまでの歩み" class="works__head" />
+      <div class="works__stats">
+        <div class="work-stat">
+          <p class="work-stat__num"><span>約</span><b>30</b><span>台</span></p>
+          <p class="work-stat__text">運送会社さまの車両に、<br class="pc-only" />広告の掲載が決定</p>
+        </div>
+        <div class="work-stat">
+          <p class="work-stat__num"><b>7</b><span>年</span></p>
+          <p class="work-stat__text">全国の地方創生の現場を、<br class="pc-only" />運営から支えてきました</p>
+        </div>
+        <div class="work-stat">
+          <p class="work-stat__num"><b>2015</b></p>
+          <p class="work-stat__text">仙台のまちを舞台に、<br class="pc-only" />大型の街フェスを開催</p>
+        </div>
+        <div class="work-stat">
+          <p class="work-stat__media">防犯タイムス</p>
+          <p class="work-stat__text">地域の「いま」を届ける<br class="pc-only" />情報メディアを運営</p>
+        </div>
+      </div>
+      <div class="works__gallery">
+        {gallery.map((g, i) => <Dummy label={`DUMMY — ${g}`} tone={(([2, 3, 1] as const)[i % 3])} />)}
+      </div>
+      <div class="works__more">
+        <a href={PATHS.works} class="btn btn--outline">実績を見る<span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 FLOW -->
+  <section class="section flow-sec">
+    <div class="container">
+      <SectionHead en="FLOW" title="ご相談の流れ" class="flow__head" />
+      <Flow steps={flow} />
+    </div>
+  </section>
+
+  <!-- 9 MESSAGE -->
+  <section class="section section--light msg">
+    <div class="container g12 g12--center">
+      <div class="span-5 msg__visual">
+        <Icon name="logo" size={64} stroke="#FFFFFF" width={1.4} />
+        <Cat name="curl" width={140} motion="drift" d={40} style="right: -56px; bottom: -36px;" hideSp />
+      </div>
+      <div class="at-7-6 msg__text">
+        <SectionHead en="MESSAGE" />
+        <p class="msg__quote">仕事は、暮らしの延長線上にある。だから仕組みも、デザインも、言葉も、使う人の手になじむものを。急がず、無理せず、少しずつ。となりで一緒に、軽くしていきます。</p>
+        <p class="sign"><span class="sign__role">nekoyashiki 代表</span><span class="sign__name">{SITE.representative}<span class="sign__nick">（{SITE.nickname}）</span></span></p>
+        <div class="origin">
+          <Icon name="logo" size={40} stroke="#05AF6C" width={3} />
+          <p>屋号の由来は、拾ってきた猫たちが暮らす「猫屋敷」。保護猫の支援も続けています。</p>
+        </div>
+        <a href={PATHS.about} class="btn btn--outline msg__btn">わたしたちについて<span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 CTA -->
+  <CtaSection title="まずは、お話から。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。<br class='pc-only' />県外の方はオンラインで承ります。" />
+</Base>

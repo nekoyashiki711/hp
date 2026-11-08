@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaPair from '../components/CtaPair.astro';
+import CtaLine from '../components/CtaLine.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Flow from '../components/Flow.astro';
+import Dummy from '../components/Dummy.astro';
+import { PATHS, hasLine } from '../config/site';
+
+const issues = [
+  { q: '紙とFAXで、事務がいつも追いつかない', t: '業務のデジタル化', a: '日報・配車・工程・請求を、スマホで回る形に。手が足りない時は事務代行も。' },
+  { q: '人も、協力会社も見つからない', t: '人と企業をつなぐ', a: '求人の見せ方を見直し、地元のつながりから協力会社をご紹介。' },
+  { q: 'HPが古い、検索しても出てこない', t: 'HP制作・マーケティング', a: '検索、AI検索、Googleマップ、SNS。見つけてもらう入口を整えます。' },
+  { q: '本業だけでは、この先が少し不安', t: '新しい収益づくり', a: '走るトラックを広告に。今ある資産から、もうひとつの柱を。' },
+];
+const services = [
+  { t: '業務のデジタル化', p: '紙の流れを、スマホの流れに。いきなり全部ではなく、いちばん手間のかかる一枚から。', tags: ['日報', '配車', '工程', '請求', '事務代行', 'AI活用'] },
+  { t: 'HP制作・改修', p: 'つくって終わりにしない。更新し続けられる形で、会社の「いま」を伝えます。', tags: ['新規制作', 'リニューアル', '更新代行', '採用ページ'] },
+  { t: 'デザイン', p: '名刺1枚から看板まで。どこで見ても「あの会社だ」とわかる、らしさをそろえます。', tags: ['名刺', 'チラシ', 'ポスター', '看板', '事業資料'] },
+  { t: 'マーケティング', p: '探している人に、ちゃんと届くように。見つけてもらう入口を、月々の伴走で育てます。', tags: ['検索', 'AI検索', 'Googleマップ', 'SNS運用'] },
+  { t: '新しい収益づくり', p: '本業のそばに、もうひとつの柱を。今ある車両や場所を、売上につなげる方法を考えます。', tags: ['車両広告', '本業以外の売上'] },
+  { t: '人と企業をつなぐ', p: '人が集まる会社へ。採用の見せ方と、地元のつながりの両方からお手伝いします。', tags: ['採用の改善', '協力会社の紹介'] },
+];
+const ways = [
+  { t: '小さく、はじめる', p: '全部を一度に変えると、現場が止まります。まずは一枚、一か所から。' },
+  { t: '現場の言葉で、話す', p: 'カタカナのIT用語ではなく、いつもの仕事の言葉で。現場と事務所の両方を知っているから。' },
+  { t: '使えるまで、となりに', p: '入れて終わりにはしません。皆さんが自然に使えるようになるまで、足を運んで伴走します。' },
+];
+const flow = [
+  { title: 'まずは、ひと言', text: hasLine ? 'LINEかフォームで、お気軽にどうぞ' : 'フォームかお電話で、お気軽にどうぞ' },
+  { title: 'お話を聞かせてください', text: '訪問またはオンラインで、じっくりと' },
+  { title: 'ちょうどいい形をご提案', text: 'ご予算に合わせて、お見積もりをお出しします', free: true },
+  { title: 'かたちにして、その先も', text: '導入・制作のあとも、となりで伴走します' },
+];
+const faq = [
+  { q: 'パソコンやITが苦手でも大丈夫ですか？', a: '大丈夫です。むしろ、そういう会社さまにこそ。普段お使いのスマホとLINEから始められる形をご提案します。' },
+  { q: '小さな会社や、個人事業でも相談できますか？', a: 'はい。規模に関わらず、ご予算に合わせてご提案します。' },
+  { q: '何から頼めばいいか、わかりません。', a: '「ここが面倒」をひとつ教えてください。そこから一緒に整理します。ご相談は無料です。' },
+  { q: '宮城県外でもお願いできますか？', a: 'はい。県外の方はオンラインで対応します。' },
+];
+---
+<Base
+  title="事業者様へ｜nekoyashiki（宮城の運送・建築のIT化・HP・集客）"
+  description="紙とFAX、ひとりに頼った仕事、止まったままのHP。宮城の運送会社・建築会社など事業者様の「いつものこと」を、業務のデジタル化・HP制作・デザイン・マーケティング・新しい収益づくりで支えます。相談無料。"
+>
+  <section class="sub-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">事業者様</span></nav>
+      <div class="g12 g12--center sub-hero__grid">
+        <div class="span-6 sub-hero__text">
+          <p class="eyebrow" lang="en">FOR BUSINESS — <span lang="ja">法人・個人事業主の方へ</span></p>
+          <h1 class="sub-hero__title">仕事の流れを、<br />もっと軽やかに。</h1>
+          <p class="sub-hero__lead">紙とFAX、ひとりに頼った仕事、止まったままのHP。現場と事務所の「いつものこと」を、仕組み・デザイン・発信の力で、ひとつずつほどいていきます。</p>
+          <CtaPair />
+          <p class="sub-hero__note">相談無料・宮城県全域に伺います（県外はオンライン）</p>
+        </div>
+        <div class="at-8-5"><Dummy class="sub-hero__photo" label="DUMMY PHOTO — 事務所・現場での打ち合わせ" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--green pickup" id="revenue">
+    <div class="container g12 g12--center">
+      <div class="span-6 pickup__text">
+        <SectionHead en="PICK UP — NEW REVENUE" invert />
+        <h2 class="pickup__title">走るトラックを、<br />新しい売上に。</h2>
+        <p class="pickup__lead">本業の「いつもの運行」はそのままに。今ある車両や場所を、もうひとつの収益の柱へ。nekoyashikiが、いま一番お届けしたい取り組みです。</p>
+        <div class="pickup__btns">
+          <CtaLine label="収益づくりを相談する" fallbackLabel="収益づくりを相談する" class="btn btn--white" iconSize={20} />
+          <a href={`${PATHS.services}#revenue`} class="btn btn--outline-white">くわしく見る<span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="at-8-5 pickup__visual">
+        <Dummy class="pickup__photo" tone="green" label="DUMMY PHOTO — 広告を載せたトラック" />
+        <div class="stat-card">
+          <p class="stat-card__num"><span>約</span><b>30</b><span>台</span></p>
+          <p class="stat-card__text">運送会社さまの車両に、<br class="pc-only" />広告の掲載が決定</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <SectionHead en="ISSUE & ANSWER" title="その「いつものこと」に、こたえを。" />
+      <div class="issues">
+        {issues.map((i) => (
+          <div class="issue">
+            <p class="issue__q">{i.q}</p>
+            <span class="issue__arrow" aria-hidden="true">→</span>
+            <p class="issue__a"><b>{i.t}</b>{i.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container g12">
+      <div class="span-4 svc-head">
+        <SectionHead en="SERVICE" title="できること" />
+        <p>ひとつだけでも、組み合わせても。窓口はひとつなので、まとめてご相談いただけます。</p>
+        <a href={PATHS.services} class="btn btn--outline">内容と料金の目安を見る<span aria-hidden="true">→</span></a>
+      </div>
+      <ol class="at-6-7 svc-list">
+        {services.map((s, i) => (
+          <li>
+            <span class="num" data-n={String(i + 1).padStart(2, '0')} aria-hidden="true"></span>
+            <div class="svc-list__body">
+              <h3>{s.t}</h3>
+              <p>{s.p}</p>
+              <div class="tags">{s.tags.map((t) => <span class="tag">{t}</span>)}</div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--mint">
+    <div class="container">
+      <SectionHead en="OUR WAY" title="進め方" class="flow__head" />
+      <div class="way-grid">
+        {ways.map((w, i) => (
+          <div class="way-card">
+            <span class="num" data-n={String(i + 1).padStart(2, '0')} aria-hidden="true"></span>
+            <h3>{w.t}</h3>
+            <p>{w.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <SectionHead en="FLOW" title="ご相談の流れ" class="flow__head" />
+      <Flow steps={flow} freeTone="white" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container g12">
+      <div class="span-4"><SectionHead en="FAQ" title="よくあるご質問" class="h2--flush" /></div>
+      <dl class="at-6-7 faq">
+        {faq.map((f) => (
+          <div>
+            <dt><span aria-hidden="true">Q</span>{f.q}</dt>
+            <dd>{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <CtaSection title="いちばん面倒な一枚を、<br />教えてください。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />
+</Base>

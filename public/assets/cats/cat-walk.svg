@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 110" width="160" height="110" role="img" aria-label="歩く猫">
+  <defs><filter id="s" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="2.4"/></filter></defs>
+  <ellipse cx="84" cy="97" rx="50" ry="3.4" fill="#8DCDB4" opacity="0.32" filter="url(#s)"/>
+  <g fill="none" stroke="#7CC3A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M44 62C32 58 26 46 32 34"/>
+    <path d="M58 72L54 94"/>
+    <path d="M68 74L70 94"/>
+    <path d="M100 74L98 94"/>
+    <path d="M110 72L114 94"/>
+    <path fill="#F1F8F5" d="M44 64C44 54 58 50 80 50C102 50 118 54 118 64C118 74 104 78 80 78C58 78 44 74 44 64Z"/>
+    <path fill="#F1F8F5" d="M112 46L111 32L119 39C122 38.5 126 38.5 129 39L137 32L136 46C139 50 139 56 136 60C133 64 129 66 124 66C119 66 115 64 112 60C109 56 109 50 112 46Z"/>
+    <path d="M118 51h3.5"/>
+    <path d="M127 51h3.5"/>
+  </g>
+</svg>

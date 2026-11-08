@@ -1,0 +1,25 @@
+---
+// 最後のCTA（ミントの帯＋白い箱。箱のふちから猫がのぞく）
+import CtaPair from './CtaPair.astro';
+import Cat from './Cat.astro';
+interface Props {
+  title: string;
+  lead: string;
+  lineLabel?: string;
+  cat?: boolean;
+}
+const { title, lead, lineLabel = 'LINEで相談する', cat = true } = Astro.props;
+---
+<section class="cta-band">
+  <div class="cta-box has-cats">
+    {cat && (
+      <div class="bg-cats bg-cats--visible" aria-hidden="true">
+        <Cat name="peek" width={96} widthSp={64} motion="peek" from={24} style="right: 96px; top: calc(var(--cw) * -0.4375);" />
+      </div>
+    )}
+    <p class="cta-box__label" lang="en">CONTACT</p>
+    <h2 class="cta-box__title" set:html={title} />
+    <p class="cta-box__lead" set:html={lead} />
+    <CtaPair lineLabel={lineLabel} size="xl" class="cta-box__btns" />
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, telHref, mailHref } from '../config/site';
+---
+<Base
+  title="プライバシーポリシー｜nekoyashiki"
+  description="nekoyashiki の個人情報の取り扱い（プライバシーポリシー）について。"
+>
+  <section class="sub-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">プライバシーポリシー</span></nav>
+      <div class="sub-hero__grid sub-hero__text sub-hero__text--narrow">
+        <p class="eyebrow" lang="en">PRIVACY POLICY</p>
+        <h1 class="sub-hero__title sub-hero__title--sm">プライバシーポリシー</h1>
+      </div>
+    </div>
+  </section>
+  <section class="section section--light">
+    <div class="container">
+      <div class="prose">
+        <p>{SITE.name}（以下「当方」）は、お客様の個人情報を次のとおり取り扱います。</p>
+        <h2>1. 取得する情報</h2>
+        <p>お問い合わせフォーム・お電話・メール・LINE などを通じて、お名前、会社名・屋号、メールアドレス、電話番号、ご相談の内容など、お客様ご自身にご提供いただいた情報を取得します。</p>
+        <h2>2. 利用の目的</h2>
+        <ul>
+          <li>ご相談・お問い合わせへの回答、ご連絡のため</li>
+          <li>お見積もり、ご提案、サービスのご提供のため</li>
+          <li>採用に関するご連絡のため</li>
+        </ul>
+        <h2>3. 第三者への提供</h2>
+        <p>法令にもとづく場合を除き、ご本人の同意なく第三者に提供しません。ただし、個人様のご依頼で連携先（株式会社 菊田総業）が作業を担当する場合は、作業に必要な範囲で情報を共有します。</p>
+        <h2>4. 管理</h2>
+        <p>取得した情報は、漏えい・紛失などがないよう適切に管理し、不要になった情報はすみやかに削除します。</p>
+        <h2>5. 開示・訂正・削除のご依頼</h2>
+        <p>ご本人から、ご自身の情報の開示・訂正・削除のご依頼があった場合は、ご本人であることを確認したうえで対応します。</p>
+        <h2>6. アクセス解析</h2>
+        <p>サイトの改善のため、アクセス解析ツールを使う場合があります。これらのツールはCookieを使って、個人を特定しない形で利用状況を集めます。</p>
+        <h2>7. お問い合わせ先</h2>
+        <p>{SITE.name}　代表 {SITE.representative}<br />〒{SITE.postalCode} {SITE.address}<br />電話 <a href={telHref}>{SITE.tel}</a>／メール <a href={mailHref()}>{SITE.email}</a></p>
+        <p>本ポリシーの内容は、必要に応じて変更することがあります。</p>
+        <p>2026年11月 制定</p>
+      </div>
+    </div>
+  </section>
+</Base>

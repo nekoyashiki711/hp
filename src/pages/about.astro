@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Cat from '../components/Cat.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, LINKS, telHref, mailHref } from '../config/site';
+
+const views = [
+  { en: 'MANAGEMENT', t: '経営の視点', p: '数字と、この先の会社のかたちから考える。投資に見合うかどうかを、一緒に確かめます。' },
+  { en: 'FIELD', t: '現場の視点', p: '手袋のままでも、移動の合間でも使えるか。現場の一日に無理なくなじむかを大切にします。' },
+  { en: 'OFFICE', t: '事務の視点', p: '集計、請求、書類。月末に誰かが抱え込まない流れを、事務所の目線で組み立てます。' },
+];
+const career = [
+  { k: '約10年', v: '運送・建築の実務と事務' },
+  { k: '約7年', v: '全国の地方創生プロジェクトの運営支援（HP制作、SNS運営、AI活用のアドバイス）' },
+  { k: '2015', v: '仙台で大型の街フェスを開催' },
+  { k: 'MEDIA', v: '地域情報メディア「防犯タイムス」を運営' },
+];
+---
+<Base
+  title="わたしたち｜nekoyashiki（宮城県仙台市）"
+  description="杜の都のリレーションシップで、地域・企業・個人のシナジーを最大化する。nekoyashikiは、宮城の仕事と暮らしのとなりにいる、地域経済活性化のパートナーです。屋号の由来、代表のこと、概要をご紹介します。"
+>
+  <section class="about-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">わたしたち</span></nav>
+      <div class="about-hero__body">
+        <p class="eyebrow" lang="en">ABOUT US</p>
+        <h1 class="about-hero__title">地域と、企業と、<br />ひとを、つなぐ。</h1>
+        <p class="about-hero__lead">杜の都のリレーションシップで、地域・企業・個人のシナジーを最大化する。nekoyashikiは、宮城の仕事と暮らしのとなりにいる、地域経済活性化のパートナーです。</p>
+        <p class="about-hero__en" lang="en">Maximizing synergies in the City of Trees<br class="pc-only" /> through the power of connection.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" id="name">
+    <div class="container g12 g12--center">
+      <div class="span-5 square">
+        <Icon name="logo" size={64} stroke="#FFFFFF" width={1.4} />
+        <Cat name="curl" width={150} widthSp={110} motion="drift" d={40} style="right: -40px; bottom: -40px;" />
+      </div>
+      <div class="at-7-6 text-stack">
+        <SectionHead en="OUR NAME" title="ひとつ屋根の下で、<br />ゆるやかにつながる。" />
+        <p>屋号の由来は、拾ってきた猫たちが暮らす「猫屋敷」。生まれも性格もちがう猫たちが、ひとつ屋根の下で、それぞれ心地よく過ごしている。人と企業と地域も、そんなふうにつながれたら。そんな思いを名前に込めました。</p>
+        <p>ロゴの上の一本線は、猫をそっと拾い上げる手。保護猫の支援も、事業と一緒に続けています。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead en="OUR VIEW" title="3つの視点で、仕組みをつくる。" />
+      <p class="view-lead">どれかひとつの目線だけでつくった仕組みは、どこかで止まってしまう。経営・現場・事務、それぞれの景色を知っているから、みんなが使い続けられる形を探せます。</p>
+      <div class="view-grid">
+        {views.map((v) => (
+          <div class="view">
+            <span class="view__en" lang="en">{v.en}</span>
+            <h3>{v.t}</h3>
+            <p>{v.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container g12 g12--start">
+      <div class="span-4 rep__side">
+        <div class="rep__photo" aria-hidden="true"><Icon name="logo" size={64} stroke="#FFFFFF" width={1.4} /></div>
+        <p class="sign"><span class="sign__role">nekoyashiki 代表</span><span class="sign__name">{SITE.representative}<span class="sign__nick">（{SITE.nickname}）</span></span></p>
+      </div>
+      <div class="at-6-7 rep__body">
+        <SectionHead en="REPRESENTATIVE" />
+        <h2>現場から、まちづくりまで。</h2>
+        <p>運ぶ仕事、建てる仕事の現場と事務所を経験し、その後は全国の地域づくりの現場へ。小さな会社の日々の手間から、まち全体のにぎわいまで。どちらの景色も見てきたことが、いまの仕事の土台になっています。</p>
+        <dl class="dlist dlist--career">
+          {career.map((c) => <div><dt>{c.k}</dt><dd>{c.v}</dd></div>)}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead en="ACTIVITIES" title="事業とあわせて、続けていること。" />
+      <div class="view-grid">
+        <div class="view">
+          <span class="view__en" lang="en">EVENT &amp; SOUND</span>
+          <h3>イベント・音響</h3>
+          <p>地域イベントや音楽イベントの企画・運営、音響に関わる活動をしています。2015年には、仙台のまちを舞台に大型の街フェスを開催しました。</p>
+        </div>
+        <div class="view">
+          <span class="view__en" lang="en">CAT RESCUE</span>
+          <h3>保護猫の支援</h3>
+          <p>屋号の由来になった、拾ってきた猫たちとの暮らしから。保護猫の支援を、事業と一緒に続けています。</p>
+        </div>
+        <div class="view">
+          <span class="view__en" lang="en">MEDIA</span>
+          <h3>防犯タイムス</h3>
+          <p>防犯や、安全・安心な暮らしに関する情報を発信する地域メディアを運営しています。<a href={LINKS.bouhan} target="_blank" rel="noopener">防犯タイムスを見る<span aria-hidden="true"> ↗</span><span class="visually-hidden">（新しいタブで開きます）</span></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container g12">
+      <div class="span-4"><SectionHead en="OUTLINE" title="概要" class="h2--flush" /></div>
+      <dl class="at-6-7 dlist">
+        <div><dt>屋号</dt><dd>{SITE.name}（{SITE.nameKana}）</dd></div>
+        <div><dt>代表</dt><dd>{SITE.representative}（{SITE.nickname}）</dd></div>
+        <div><dt>事業形態</dt><dd>個人事業</dd></div>
+        <div><dt>所在地</dt><dd>〒{SITE.postalCode} {SITE.address}</dd></div>
+        <div><dt>連絡先</dt><dd class="hv"><a href={telHref}>{SITE.tel}</a><br /><a href={mailHref()}>{SITE.email}</a></dd></div>
+        <div><dt>営業時間</dt><dd>{SITE.hours}</dd></div>
+        <div><dt>事業内容</dt><dd>新しい収益づくり／業務のデジタル化・事務代行／HP制作・改修／デザイン／マーケティング支援／SNS運用支援／採用・協力会社の紹介／暮らしの困りごと対応（個人様）</dd></div>
+        <div><dt>対応エリア</dt><dd>{SITE.area}</dd></div>
+        <div><dt>連携先</dt><dd>株式会社 菊田総業（仙台市宮城野区）</dd></div>
+        <div><dt>運営メディア</dt><dd>防犯タイムス</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <CtaSection title="まずは、お話から。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />
+</Base>

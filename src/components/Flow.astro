@@ -1,0 +1,32 @@
+---
+// ご相談の流れ（STEP01〜04）。線の上を猫が歩く
+import Cat from './Cat.astro';
+interface Step {
+  title: string;
+  text: string;
+  free?: boolean;
+}
+interface Props {
+  steps: Step[];
+  cat?: boolean;
+  freeTone?: 'mint' | 'white';
+}
+const { steps, cat = true, freeTone = 'mint' } = Astro.props;
+---
+<div class:list={['flow', 'has-cats', { 'flow--cat': cat }]}>
+  {cat && (
+    <div class="bg-cats bg-cats--visible" aria-hidden="true">
+      <Cat name="walk" width={120} widthSp={96} motion="walk" style="left: 0; right: 0; top: calc(var(--cw) * -0.6);" />
+    </div>
+  )}
+  <ol class="flow__list">
+    {steps.map((s, i) => (
+      <li class="flow__item">
+        <span class="flow__no" lang="en">STEP {String(i + 1).padStart(2, '0')}</span>
+        <p class="flow__title">{s.title}</p>
+        <p class="flow__text">{s.text}</p>
+        {s.free && <span class:list={['flow__free', `flow__free--${freeTone}`]}>ここまで無料</span>}
+      </li>
+    ))}
+  </ol>
+</div>
