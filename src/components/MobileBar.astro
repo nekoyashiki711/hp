@@ -1,0 +1,14 @@
+---
+// スマホ下部の固定バー（〜767px で常に表示）
+import Icon from './Icon.astro';
+import CtaLine from './CtaLine.astro';
+import { hasLine, PATHS, telHref } from '../config/site';
+---
+<div class="mobile-bar">
+  {hasLine ? (
+    <CtaLine label="LINEで相談" class="btn btn--primary btn--bar" iconSize={18} />
+  ) : (
+    <a href={telHref} class="btn btn--primary btn--bar"><Icon name="phone" size={18} />電話で相談</a>
+  )}
+  <a href={PATHS.contact} class="btn btn--outline btn--bar"><Icon name="mail" size={18} />問い合わせ</a>
+</div>

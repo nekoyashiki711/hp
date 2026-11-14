@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" width="160" height="80" role="img" aria-label="ふちからのぞく猫">
+  <defs><filter id="s" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="2"/></filter></defs>
+  <ellipse cx="80" cy="73" rx="56" ry="3" fill="#8DCDB4" opacity="0.3" filter="url(#s)"/>
+  <g transform="translate(9.6 -18) scale(2.2)" fill="none" stroke="#7CC3A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path vector-effect="non-scaling-stroke" fill="#F1F8F5" d="M14 40C14 34 15.5 30 18 27.5L16 20L23.5 24C26 23.2 29 23 32 23C35 23 38 23.2 40.5 24L48 20L46 27.5C48.5 30 50 34 50 40Z"/>
+    <path vector-effect="non-scaling-stroke" d="M2 40H62"/>
+    <circle cx="26" cy="33" r="0.8" fill="#7CC3A7" stroke="none"/>
+    <circle cx="38" cy="33" r="0.8" fill="#7CC3A7" stroke="none"/>
+  </g>
+</svg>

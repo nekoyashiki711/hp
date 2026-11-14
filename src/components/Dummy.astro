@@ -1,0 +1,10 @@
+---
+// 写真の差し替え待ち枠（実物の写真が届くまでサイズを保ったまま薄いグレーで表示）
+interface Props {
+  label: string;
+  class?: string;
+  tone?: 1 | 2 | 3 | 'green';
+}
+const { label, class: cls, tone = 1 } = Astro.props;
+---
+<div class:list={['dummy', `dummy--${tone}`, cls]} role="img" aria-label="写真準備中"><span aria-hidden="true">{label}</span></div>

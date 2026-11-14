@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaPair from '../components/CtaPair.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { PATHS } from '../config/site';
+
+const services = [
+  { id: 'dx', t: '業務のIT・DX化', p: '日報、配車表、工程表、見積・請求、現場写真共有などのデジタル化。既製クラウドの導入・設定・定着まで支援します。', tags: ['日報', '配車表', '工程表', '見積・請求', '現場写真共有'] },
+  { id: 'office', t: '事務効率化・事務代行', p: '事務の流れを見直し、手作業や重複入力などの負担を軽くします。', tags: ['業務の見直し', '事務代行'] },
+  { id: 'web', t: 'HP制作・改修', p: '新規サイトの制作、既存サイトのデザイン・機能の改修。', tags: ['新規制作', 'リニューアル', '採用ページ'] },
+  { id: 'design', t: 'デザイン', p: '名刺、チラシ、ポスター、Web、事業資料、看板など。', tags: ['名刺', 'チラシ', 'ポスター', '看板', '事業資料'] },
+  { id: 'marketing', t: 'マーケティング支援', p: 'HP更新、記事作成、アクセス分析、SEO相談、キーワード分析、Googleマップ対策（MEO）の分析。', tags: ['検索', 'AI検索', 'Googleマップ', 'アクセス分析'] },
+  { id: 'sns', t: 'SNS運用支援', p: 'Instagram・TikTok・YouTubeを活用した認知拡大。企画・撮影・編集・投稿などは、ご予算に応じて個別にご提案します。', tags: ['Instagram', 'TikTok', 'YouTube'] },
+  { id: 'revenue', t: '車両広告・新しい収益づくり', p: '車両を活用した広告や、本業以外の収益づくりを企画・ご提案します。運送会社さまと広告主をつなぐ取り組みです。', tags: ['車両広告', '本業以外の売上'] },
+  { id: 'people', t: '人手不足への対応・企業間連携', p: '採用や業務改善のご提案、協力会社など企業同士の橋渡しをします。', tags: ['採用の改善', '協力会社の紹介'] },
+];
+---
+<Base
+  title="できること・料金｜nekoyashiki（宮城のIT・DX化、HP制作、デザイン、集客）"
+  description="業務のIT・DX化、事務効率化・事務代行、HP制作・改修、デザイン、マーケティング支援、SNS運用支援、車両広告・新しい収益づくり、人手不足への対応。nekoyashiki のサービス内容と料金の目安です。ご相談は契約まで何度でも無料。"
+>
+  <section class="sub-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">できること</span></nav>
+      <div class="sub-hero__grid sub-hero__text sub-hero__text--narrow">
+        <p class="eyebrow" lang="en">SERVICE</p>
+        <h1 class="sub-hero__title">できること</h1>
+        <p class="sub-hero__lead">ひとつだけでも、組み合わせても。窓口はひとつなので、まとめてご相談いただけます。</p>
+        <CtaPair />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container g12">
+      <div class="span-4 svc-head">
+        <SectionHead en="MENU" title="サービス一覧" />
+        <p>運送会社・工務店・リフォーム会社・専門工事会社をはじめ、地域の事業者さまのご相談に対応します。個人の方は<a href={PATHS.personal}>個人様のページ</a>をご覧ください。</p>
+      </div>
+      <ol class="at-6-7 svc-list svc-list--closed">
+        {services.map((s, i) => (
+          <li id={s.id}>
+            <span class="num" data-n={String(i + 1).padStart(2, '0')} aria-hidden="true"></span>
+            <div class="svc-list__body">
+              <h2 class="svc-list__h">{s.t}</h2>
+              <p>{s.p}</p>
+              <div class="tags">{s.tags.map((t) => <span class="tag tag--white">{t}</span>)}</div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="price">
+    <div class="container g12">
+      <div class="span-4"><SectionHead en="PRICE" title="料金の目安" class="h2--flush" /><p class="price-lead">表示はすべて税込です。ご予算に合わせたご提案もできます。</p></div>
+      <div class="at-6-7">
+        <table class="price-table">
+          <tbody>
+            <tr><th scope="row">ご相談</th><td>契約までは何度でも<b>無料</b></td></tr>
+            <tr><th scope="row">HP制作・改修</th><td><b>550,000</b>円〜</td></tr>
+            <tr><th scope="row">マーケティング支援</th><td>月額 <b>33,000</b>円〜<small>HPの文章・画像更新、記事作成（月1本）、アクセス分析、SEO相談、キーワード分析、Googleマップ対策の分析を含みます</small></td></tr>
+            <tr><th scope="row">SNS運用支援</th><td>月額 <b>33,000</b>円〜<small>マーケティング支援とは別のご契約です</small></td></tr>
+            <tr><th scope="row">IT・DX化、事務支援、デザイン、その他</th><td>個別にお見積もり</td></tr>
+            <tr><th scope="row">訪問の交通費</th><td>仙台市内は無料<small>遠方の場合はご相談ください</small></td></tr>
+          </tbody>
+        </table>
+        <ul class="notes">
+          <li>マーケティング支援の月額料金には、記事作成が月1本含まれます。2本目以降の記事作成や、新しいページの制作は追加費用となります（費用はご相談ください）。</li>
+          <li>SNS運用支援の対象媒体数・投稿本数・作業範囲は、ご予算に応じて個別にご提案します。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection title="まずは、お話から。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />
+</Base>

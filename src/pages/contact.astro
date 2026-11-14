@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaLine from '../components/CtaLine.astro';
+import { SITE, PATHS, FORM_ENDPOINT, hasLine, telHref, mailHref } from '../config/site';
+const types = [
+  { v: 'business', l: '事業者様のご相談' },
+  { v: 'personal', l: '個人様のご依頼' },
+  { v: 'recruit', l: '採用について' },
+  { v: 'other', l: 'そのほか' },
+];
+---
+<Base
+  title="お問い合わせ｜nekoyashiki"
+  description="nekoyashiki へのお問い合わせ・ご相談はこちら。ご相談は契約まで何度でも無料です。内容が決まっていなくても大丈夫です。フォーム・お電話・メールで受け付けています。"
+>
+  <section class="sub-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">お問い合わせ</span></nav>
+      <div class="sub-hero__grid sub-hero__text sub-hero__text--narrow">
+        <p class="eyebrow" lang="en">CONTACT</p>
+        <h1 class="sub-hero__title">お問い合わせ</h1>
+        <p class="sub-hero__lead">ご相談は無料です。「何から頼めばいいかわからない」「こんなこと頼めるかな」の段階でも大丈夫。わかる範囲で、お気軽にお書きください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container g12 g12--start">
+      <div class="at-1-7 contact-main">
+        <form class="form" id="contact-form" action={FORM_ENDPOINT || undefined} method="post" data-endpoint={FORM_ENDPOINT} data-mailto={SITE.email} novalidate>
+          <fieldset class="field">
+            <legend>お問い合わせの種類<span class="req">必須</span></legend>
+            <div class="choices">
+              {types.map((t, i) => (
+                <label class="choice"><input type="radio" name="種類" value={t.l} data-type={t.v} required checked={i === 0} /><span>{t.l}</span></label>
+              ))}
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="f-name">お名前<span class="req">必須</span></label>
+            <input class="input" id="f-name" name="お名前" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="f-company">会社名・屋号<span class="opt">任意</span></label>
+            <input class="input" id="f-company" name="会社名・屋号" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="f-email">メールアドレス<span class="req">必須</span></label>
+            <input class="input" id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required />
+          </div>
+          <div class="field">
+            <label for="f-tel">電話番号<span class="opt">任意</span></label>
+            <input class="input" id="f-tel" name="電話番号" type="tel" autocomplete="tel" inputmode="tel" />
+          </div>
+          <div class="field">
+            <label for="f-body">ご相談の内容<span class="req">必須</span></label>
+            <textarea class="input" id="f-body" name="ご相談の内容" required placeholder="例：配車表を紙からスマホに変えたい／HPが古いので見直したい／引越しの見積もりがほしい など"></textarea>
+          </div>
+          <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <label class="consent"><input type="checkbox" name="プライバシーポリシーに同意" value="同意する" required /><span><a href={PATHS.privacy} target="_blank" rel="noopener">プライバシーポリシー</a>に同意して送信します（必須）</span></label>
+          <p class="form__status" role="status" aria-live="polite" hidden></p>
+          <button type="submit" class="btn btn--primary btn--lg form__submit">送信する</button>
+          {!FORM_ENDPOINT && <p class="note-sm form__fallback-note">送信ボタンを押すと、入力内容が入ったメールが作成されます。そのままメールを送信してください。</p>}
+        </form>
+      </div>
+      <aside class="at-9-4 contact-side" aria-label="フォーム以外の連絡先">
+        {hasLine && (
+          <div class="side-card">
+            <p class="side-card__en" lang="en">LINE</p>
+            <p>いちばん手軽な方法です。写真も送れます。</p>
+            <CtaLine label="LINEで相談する" class="btn btn--primary btn--md btn--block" />
+          </div>
+        )}
+        <div class="side-card">
+          <p class="side-card__en" lang="en">TEL</p>
+          <a class="big" href={telHref}>{SITE.tel}</a>
+          <p>受付時間 {SITE.hours}</p>
+        </div>
+        <div class="side-card">
+          <p class="side-card__en" lang="en">MAIL</p>
+          <a class="mid" href={mailHref('お問い合わせ')}>{SITE.email}</a>
+          <p>写真を添えていただくと、話が早く進みます。</p>
+        </div>
+        <div class="side-card">
+          <p class="side-card__en" lang="en">AREA</p>
+          <p>{SITE.area}</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (form) {
+    const status = form.querySelector<HTMLElement>('.form__status')!;
+    const endpoint = form.dataset.endpoint || '';
+    const show = (msg: string) => { status.textContent = msg; status.hidden = false; };
+
+    // ?type=recruit などで種類を選んだ状態にする
+    const type = new URLSearchParams(location.search).get('type');
+    if (type) form.querySelector<HTMLInputElement>(`input[data-type="${type}"]`)?.click();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        const first = form.querySelector<HTMLElement>(':invalid');
+        show('未入力の必須項目があります。');
+        first?.focus();
+        return;
+      }
+      const data = new FormData(form);
+      if (data.get('_gotcha')) return;
+      if (endpoint) {
+        show('送信しています…');
+        try {
+          const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error(String(res.status));
+          form.reset();
+          show('送信しました。2営業日以内にご連絡します。ありがとうございました。');
+        } catch {
+          show('送信できませんでした。お手数ですが、お電話かメールでご連絡ください。');
+        }
+      } else {
+        const lines: string[] = [];
+        data.forEach((v, k) => { if (k !== '_gotcha') lines.push(`【${k === 'email' ? 'メールアドレス' : k}】\n${v}`); });
+        const subject = `【お問い合わせ】${data.get('種類') ?? ''}`;
+        location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n\n'))}`;
+        show('メールアプリが開きます。内容を確認して、そのまま送信してください。');
+      }
+    });
+  }
+</script>

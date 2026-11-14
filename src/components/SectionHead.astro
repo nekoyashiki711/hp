@@ -1,0 +1,14 @@
+---
+// セクション見出し：短い横線＋英字ラベル → 和文見出し
+interface Props {
+  en: string;
+  title?: string;
+  tag?: 'h1' | 'h2';
+  class?: string;
+  invert?: boolean;
+}
+const { en, title, tag = 'h2', class: cls, invert = false } = Astro.props;
+const Tag = tag;
+---
+<p class:list={['eyebrow', { 'eyebrow--invert': invert }]} lang="en">{en}</p>
+{title && <Tag class:list={['h2', cls]} set:html={title} />}

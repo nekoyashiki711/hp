@@ -1,0 +1,37 @@
+---
+/**
+ * 背景の猫（装飾）。親セクションの .bg-cats レイヤーの中に置く。
+ * motion:
+ *  - drift : 画面中央で 0 になるよう、縦に ±d px 動き、r0→r1 度だけ傾く
+ *  - peek  : 画面に入ると from px 下からせり上がって止まる（1回だけ）
+ *  - walk  : スクロール量に合わせて、置いた幅（トラック）の左端→右端へ歩く
+ */
+interface Props {
+  name: 'sit' | 'walk' | 'loaf' | 'peek' | 'back' | 'curl';
+  width: number;
+  widthSp?: number;
+  motion: 'drift' | 'peek' | 'walk';
+  d?: number;
+  r0?: number;
+  r1?: number;
+  from?: number;
+  style?: string;
+  hideSp?: boolean;
+}
+const { name, width, widthSp, motion, d = 0, r0 = 0, r1 = 0, from = 20, style = '', hideSp = false } = Astro.props;
+const ratio: Record<string, number> = { sit: 1, back: 1, walk: 110 / 160, curl: 110 / 160, loaf: 120 / 200, peek: 80 / 160 };
+const h = Math.round(width * ratio[name]);
+const vars = `--w:${width}px;--w-sp:${widthSp ?? width}px;--d:${d}px;--r0:${r0}deg;--r1:${r1}deg;--from:${from}px;`;
+const src = `/assets/cats/cat-${name}.svg`;
+---
+{motion === 'walk' ? (
+  <div class:list={['cat', 'cat--walk', { 'cat--hide-sp': hideSp }]} style={vars + style} data-cat="walk">
+    <div class="cat__mover">
+      <img class="cat__img" src={src} width={width} height={h} alt="" loading="lazy" decoding="async" />
+    </div>
+  </div>
+) : (
+  <div class:list={['cat', `cat--${motion}`, { 'cat--hide-sp': hideSp }]} style={vars + style} data-cat={motion}>
+    <img class="cat__img" src={src} width={width} height={h} alt="" loading="lazy" decoding="async" />
+  </div>
+)}
