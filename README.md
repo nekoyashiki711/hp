@@ -56,3 +56,12 @@ Cloudflare Pages / Netlify / Vercel の場合は、このリポジトリをつ�
 - 写真：`Dummy` コンポーネントの枠（薄いグレー）。写真が届いたら `<img>` に置き換えます。
 - 採用情報の【】の項目。
 - 公式LINEのURL、フォームの送信先、Instagram のURL。
+
+## エックスサーバーへの公開
+
+公開先はエックスサーバーの `nekoyashiki.life`（`/nekoyashiki.life/public_html/`）です。
+
+- **自動**：`main` に取り込むと GitHub Actions（`.github/workflows/deploy.yml`）が書き出して FTP でアップロードします。最初に、リポジトリの Settings → Secrets and variables → Actions に `FTP_SERVER`（例 `sv12345.xserver.jp`）、`FTP_USERNAME`、`FTP_PASSWORD` を登録してください。
+- **手動**：`npm run build` でできた `dist/` の中身を、ファイルマネージャーで `public_html` にアップロードします（`.htaccess` も含めます）。
+
+`public/.htaccess` で http・www を `https://nekoyashiki.life` に転送しています。サーバーパネルで無料SSLを有効にしてから公開してください。
