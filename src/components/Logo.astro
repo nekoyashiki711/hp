@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  variant?: 'header' | 'footer';
+}
+const { variant = 'header' } = Astro.props;
+---
+<a href="/" class:list={['logo', `logo--${variant}`]} aria-label="nekoyashiki トップへ">
+  <Icon name="logo" class="logo__mark" stroke="#05AF6C" width={variant === 'footer' ? 2.4 : 2.8} size={64} />
+  <span class="logo__type" aria-hidden="true"><span class="logo__o"></span></span>
+</a>

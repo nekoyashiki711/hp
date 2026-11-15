@@ -1,0 +1,204 @@
+---
+// 採用情報（非公開：noindex・どこからもリンクしない・サイトマップに載せない）
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaLine from '../components/CtaLine.astro';
+import Dummy from '../components/Dummy.astro';
+import Cat from '../components/Cat.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, PATHS, telHref, mailHref } from '../config/site';
+
+const jobs = [
+  { en: '01 OFFICE & DIGITAL', t: '事務・デジタルサポート', p: '書類やデータの整理、お客様の業務をスマホで回す仕組みづくりのお手伝い。', photo: '事務・デジタル', tone: 2 },
+  { en: '02 WEB & DESIGN', t: 'Web・デザインアシスタント', p: 'HPの更新、SNSの運用、チラシや名刺づくりの補助。未経験から少しずつ。', photo: 'Web・デザイン', tone: 3 },
+  { en: '03 FIELD', t: '現場スタッフ', p: '引越し・運搬・家まわりの作業。連携先の菊田総業の現場で、チームで動きます。', photo: '現場', tone: 1 },
+] as const;
+const benefits = [
+  { icon: 'shield', t: '【社会保険】', p: '【加入条件などを記載】' },
+  { icon: 'train', t: '【交通費】', p: '【支給条件・上限を記載】' },
+  { icon: 'calendar', t: '【休暇】', p: '【有給・特別休暇などを記載】' },
+  { icon: 'uniform', t: '【制服・備品】', p: '【貸与・支給の内容を記載】' },
+  { icon: 'plus', t: '【その他】', p: '【独自の制度などを記載】' },
+];
+const recruitMail = mailHref('採用について');
+---
+<Base
+  title="採用情報｜nekoyashiki"
+  description="nekoyashiki の採用情報。宮城の仕事と暮らしを、すぐそばで支える仲間を探しています。"
+  noindex
+>
+  <section class="sub-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">採用情報</span></nav>
+      <div class="g12 g12--center sub-hero__grid">
+        <div class="span-6 sub-hero__text">
+          <p class="eyebrow" lang="en">RECRUIT</p>
+          <h1 class="sub-hero__title">まちの「困った」を、<br />一緒に軽くする人へ。</h1>
+          <p class="sub-hero__lead">経験よりも、となりの人を気づかえること。道具や仕組みは、入ってから一緒に覚えれば大丈夫です。宮城の仕事と暮らしを、すぐそばで支える仲間を探しています。</p>
+          <div class="cta-pair">
+            <a href="#contact" class="btn btn--primary btn--lg">応募・お問い合わせ<span aria-hidden="true">→</span></a>
+            <CtaLine label="LINEで気軽に質問" fallbackLabel="メールで気軽に質問" fallbackHref={recruitMail} class="btn btn--outline btn--lg-sub" iconSize={20} />
+          </div>
+        </div>
+        <div class="at-8-5"><Dummy class="sub-hero__photo" label="DUMMY PHOTO — 働く様子・チーム" /></div>
+      </div>
+      <nav class="pills" aria-label="ページ内メニュー">
+        <a href="#jobs">仕事の種類</a>
+        <a href="#hours">勤務時間・給料</a>
+        <a href="#benefits">福利厚生</a>
+        <a href="#grow">資格取得・IT教育</a>
+        <a href="#voice">先輩の声</a>
+        <a href="#message">代表メッセージ</a>
+        <a href="#contact">お問い合わせ先</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section section--light" id="jobs">
+    <div class="container">
+      <SectionHead en="JOBS" title="仕事の種類" />
+      <div class="p-grid">
+        {jobs.map((j) => (
+          <div class="p-card">
+            <Dummy label={`DUMMY — ${j.photo}`} tone={j.tone} />
+            <div class="p-card__body">
+              <p class="p-card__en" lang="en">{j.en}</p>
+              <h3>{j.t}</h3>
+              <p>{j.p}</p>
+              <div class="tags"><span class="tag">【雇用形態】</span><span class="tag">【勤務地】</span></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hours">
+    <div class="container two-col">
+      <div>
+        <SectionHead en="WORKING HOURS" title="勤務時間" />
+        <dl class="dlist dlist--hours">
+          <div><dt>勤務時間</dt><dd>【9:00〜18:00（休憩60分）】</dd></div>
+          <div><dt>休日</dt><dd>【土日祝・年末年始 など】</dd></div>
+          <div><dt>残業</dt><dd>【月〇時間程度】</dd></div>
+          <div><dt>働き方</dt><dd>【時短・週〇日〜など、ご相談ください】</dd></div>
+        </dl>
+      </div>
+      <div>
+        <SectionHead en="SALARY" title="給料" />
+        <dl class="dlist dlist--row">
+          <div><dt>事務・デジタルサポート</dt><dd>【月給〇〇万円〜】</dd></div>
+          <div><dt>Web・デザインアシスタント</dt><dd>【月給〇〇万円〜】</dd></div>
+          <div><dt>現場スタッフ</dt><dd>【日給・時給〇〇円〜】</dd></div>
+          <div><dt>昇給・賞与</dt><dd>【昇給 年〇回／賞与 〇〇】</dd></div>
+        </dl>
+        <p class="note-sm">経験・資格を考慮して決定します。【詳細は面談でご説明します】</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" id="benefits">
+    <div class="container">
+      <SectionHead en="BENEFITS" title="福利厚生" />
+      <div class="benefit-grid">
+        {benefits.map((b) => (
+          <div class="benefit">
+            <Icon name={b.icon} size={30} />
+            <h3>{b.t}</h3>
+            <p>{b.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="grow">
+    <div class="container">
+      <SectionHead en="GROW" title="学びながら、育つ。" />
+      <p class="view-lead">はじめから全部できる人はいません。資格も、ITも、働きながら少しずつ身につけられるようにしています。</p>
+      <div class="grow-grid">
+        <div class="grow-card">
+          <p class="grow-card__en" lang="en">LICENSE</p>
+          <h3>資格取得の支援</h3>
+          <p>仕事に役立つ資格を、働きながら取れるように応援します。</p>
+          <dl class="dlist dlist--small">
+            <div><dt>対象の資格</dt><dd>【例：運転免許の上位区分、各種技能講習 など】</dd></div>
+            <div><dt>費用</dt><dd>【会社負担の範囲・条件】</dd></div>
+          </dl>
+        </div>
+        <div class="grow-card grow-card--mint">
+          <div class="grow-card__row">
+            <p class="grow-card__en" lang="en">IT EDUCATION</p>
+            <span class="free-badge">希望者は無料</span>
+          </div>
+          <h3>IT教育</h3>
+          <p>スマホやパソコンの基本から、AIの使い方、HPの更新まで。代表が、仕事で使うところから一緒に教えます。どの職種の方でも受けられます。</p>
+          <div class="tags"><span class="tag tag--white">スマホ・PCの基本</span><span class="tag tag--white">AI活用</span><span class="tag tag--white">HPの更新</span><span class="tag tag--white">SNSの運用</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" id="voice">
+    <div class="container">
+      <SectionHead en="VOICE" title="先輩の声" />
+      <div class="voice-grid">
+        {[2, 3].map((tone) => (
+          <div class="voice">
+            <Dummy label="DUMMY" tone={tone as 2 | 3} />
+            <div class="voice__body">
+              <p class="voice__title">【先輩のひと言・見出し】</p>
+              <p>【入社のきっかけ、仕事のやりがい、職場の雰囲気などを、ご本人の言葉で掲載します】</p>
+              <p>【名前（イニシャル可）】／【職種】／【入社〇年目】</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section msg" id="message">
+    <div class="container g12 g12--center">
+      <div class="span-5 msg__visual">
+        <Icon name="logo" size={64} stroke="#FFFFFF" width={1.4} />
+        <Cat name="sit" width={110} widthSp={80} motion="drift" d={50} r0={-3} r1={3} style="right: -44px; bottom: -28px;" />
+      </div>
+      <div class="at-7-6 msg__text">
+        <SectionHead en="MESSAGE" />
+        <h2 class="rep-title">ひとつ屋根の下で、<br />それぞれのペースで。</h2>
+        <p class="msg__quote msg__quote--sm">生まれも性格もちがう猫たちが、同じ家で心地よく暮らしているように。得意なことも、歩んできた道もちがう人が、それぞれのペースで力を出せる場所でありたいと思っています。わからないことは、聞けばいい。できないことは、一緒に覚えればいい。まずは気軽に、話を聞きに来てください。</p>
+        <p class="sign"><span class="sign__role">nekoyashiki 代表</span><span class="sign__name">{SITE.representative}<span class="sign__nick">（{SITE.nickname}）</span></span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="contact">
+    <div class="entry-box">
+      <div class="entry-box__head">
+        <p class="cta-box__label" lang="en">ENTRY &amp; CONTACT</p>
+        <h2>まずは、話を聞きに来ませんか。</h2>
+        <p>応募の前のご質問だけでも大丈夫です。いちばん連絡しやすい方法でどうぞ。</p>
+      </div>
+      <div class="entry-grid">
+        <div class="entry-way">
+          <p class="entry-way__en" lang="en">FORM</p>
+          <h3>応募フォーム</h3>
+          <p>24時間受付。2営業日以内にご連絡します。</p>
+          <a href={`${PATHS.contact}?type=recruit`} class="btn btn--primary">フォームで応募する<span aria-hidden="true">→</span></a>
+        </div>
+        <div class="entry-way">
+          <p class="entry-way__en" lang="en">TEL</p>
+          <h3>お電話</h3>
+          <p>受付時間 {SITE.hours}<br />「採用の件で」とお伝えください。</p>
+          <a href={telHref} class="btn btn--outline btn--tel">{SITE.tel}</a>
+        </div>
+        <div class="entry-way">
+          <p class="entry-way__en" lang="en">MAIL</p>
+          <h3>メール</h3>
+          <p>件名に「採用」とご記入ください。</p>
+          <a href={recruitMail} class="btn btn--outline btn--mailaddr">{SITE.email}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

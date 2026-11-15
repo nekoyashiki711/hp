@@ -1,0 +1,24 @@
+---
+// 「LINEで相談」系のボタン。公式LINEの URL が未設定のあいだは、フォーム（または指定先）へのボタンになります。
+import Icon from './Icon.astro';
+import { LINE_URL, hasLine, PATHS } from '../config/site';
+interface Props {
+  label: string;
+  fallbackLabel?: string;
+  fallbackHref?: string;
+  fallbackIcon?: string;
+  class?: string;
+  iconSize?: number;
+}
+const { label, fallbackLabel, fallbackHref = PATHS.contact, fallbackIcon = 'mail', class: cls, iconSize = 20 } = Astro.props;
+const fbLabel = fallbackLabel ?? label.replace('LINEで', 'フォームで').replace('公式LINEを友だち追加', 'フォームで問い合わせる');
+---
+{hasLine ? (
+  <a href={LINE_URL} class={cls} target="_blank" rel="noopener">
+    <Icon name="line" size={iconSize} />{label}<span class="visually-hidden">（LINEが開きます）</span>
+  </a>
+) : (
+  <a href={fallbackHref} class={cls}>
+    <Icon name={fallbackIcon} size={iconSize} />{fbLabel}
+  </a>
+)}

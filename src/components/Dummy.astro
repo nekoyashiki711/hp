@@ -1,0 +1,16 @@
+---
+// 写真の差し替え待ち枠。写真が届くまで、サイズを保ったまま猫のマーク入りの面で表示します。
+// label は「ここに入れる写真」のメモ（画面には出しません）。caption を渡すと左下に表示します。
+import Icon from './Icon.astro';
+interface Props {
+  label: string;
+  caption?: string;
+  class?: string;
+  tone?: 1 | 2 | 3 | 'green';
+}
+const { label, caption, class: cls, tone = 1 } = Astro.props;
+---
+<div class:list={['dummy', `dummy--${tone}`, cls]} data-photo={label.replace(/^DUMMY( PHOTO)?( — )?/, '') || undefined} aria-hidden="true">
+  <Icon name="logo" class="dummy__mark" size={64} width={2.4} />
+  {caption && <span class="dummy__cap">{caption}</span>}
+</div>

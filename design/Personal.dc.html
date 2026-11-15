@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>nekoyashiki 個人様ページ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#333333}a:hover{color:#007F52}
+h1,h2,h3{word-break:auto-phrase}
+</style>
+</helmet>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; color: #545454; background: #FFFFFF; font-size: 17px; line-height: 1.9; font-weight: 500; -webkit-font-smoothing: antialiased">
+
+<!-- HEADER -->
+<header style="background: #FFFFFF; border-bottom: 1px solid #E6E6E6">
+<div style="max-width: 1360px; margin: 0 auto; padding: 0 40px; height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+<a href="Main.dc.html" aria-label="nekoyashiki トップへ" style="display: flex; align-items: center; gap: 14px; text-decoration: none">
+<svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="#05AF6C" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 3V15.8"></path><path d="M19.5 19.6Q32 12 44.5 19.6L49.5 15.5L50.2 24.5C52.8 29 54 34.5 54 40.5C54 51 44.5 57.5 32 57.5C19.5 57.5 10 51 10 40.5C10 34.5 11.2 29 13.8 24.5L14.5 15.5Z"></path><path d="M23 39h5"></path><path d="M36 39h5"></path><path d="M51 52.5C56.5 53 59 57 57 61"></path></svg>
+<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 0.32em; color: #545454; display: flex; align-items: center">NEK<span style="display: inline-block; width: 0.66em; height: 0.66em; border-radius: 50%; background: #05AF6C; margin: 0 0.32em 0 0.04em"></span>YASHIKI</span>
+</a>
+<nav aria-label="メインメニュー" style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap">
+<a href="Business.dc.html" style="text-decoration: none; font-size: 15px; color: #545454">事業者様</a>
+<a href="Personal.dc.html" aria-current="page" style="text-decoration: none; font-size: 15px; color: #333333; font-weight: 700; box-shadow: inset 0 -2px 0 #05AF6C">個人様</a>
+<a href="#" style="text-decoration: none; font-size: 15px; color: #545454">できること</a>
+<a href="#" style="text-decoration: none; font-size: 15px; color: #545454">実績</a>
+<a href="About.dc.html" style="text-decoration: none; font-size: 15px; color: #545454">わたしたち</a>
+<a href="#" style="text-decoration: none; font-size: 15px; color: #545454">お問い合わせ</a>
+<a href="#" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5C6.8 3.5 2.8 6.8 2.8 10.9c0 2.5 1.5 4.7 3.9 6.1L6 20.5l3.9-2.3c.7.1 1.4.2 2.1.2 5.2 0 9.2-3.3 9.2-7.5S17.2 3.5 12 3.5Z" fill="#FFFFFF"></path></svg>
+LINEで相談</a>
+</nav>
+</div>
+</header>
+
+<!-- BREADCRUMB + HERO -->
+<section style="max-width: 1360px; margin: 0 auto; padding: 32px 40px 120px">
+<nav aria-label="パンくずリスト" style="font-size: 14px; display: flex; gap: 10px"><a href="Main.dc.html" style="color: #545454; text-decoration: none">トップ</a><span aria-hidden="true">/</span><span style="color: #333333">個人様</span></nav>
+<div style="margin-top: 72px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px; align-items: center">
+<div style="grid-column: span 6; min-width: 300px; display: flex; flex-direction: column; gap: 32px">
+<p style="margin: 0; display: flex; align-items: center; gap: 14px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.16em"><span style="width: 32px; height: 4px; background: #333333"></span>FOR PERSONAL</p>
+<h1 style="margin: 0; font-weight: 700; font-size: clamp(40px, 4.4vw, 64px); line-height: 1.4; color: #333333">暮らしの<br>「ちょっと困った」に、<br>すぐ動く。</h1>
+<p style="margin: 0; font-size: 18px; line-height: 2.1">お引越しから、家まわりの小さな修理まで。地元の運送会社・菊田総業と連携し、車両と人手が必要なことも、まとめてお引き受けします。</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center">
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 68px; padding: 0 44px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 18px">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5C6.8 3.5 2.8 6.8 2.8 10.9c0 2.5 1.5 4.7 3.9 6.1L6 20.5l3.9-2.3c.7.1 1.4.2 2.1.2 5.2 0 9.2-3.3 9.2-7.5S17.2 3.5 12 3.5Z" fill="#FFFFFF"></path></svg>
+LINEで写真を送って相談</a>
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: 60px; padding: 0 32px; border-radius: 999px; border: 1.5px solid #545454; color: #333333; text-decoration: none; font-weight: 700; font-size: 16px">フォームで問い合わせる</a>
+</div>
+<p style="margin: 0; font-size: 16px">お見積もり無料・宮城県内に伺います</p>
+</div>
+<div style="grid-column: 8 / span 5; min-width: 280px; aspect-ratio: 4 / 5; background: #E9EDEB; border-radius: 4px; display: flex; align-items: flex-end; padding: 20px; box-sizing: border-box"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.1em; color: #545454">DUMMY PHOTO — 家まわり・作業の様子</span></div>
+</div>
+</section>
+
+<!-- SERVICES (toC) -->
+<section style="background: #F3F8F6; padding: 140px 0">
+<div style="max-width: 1360px; margin: 0 auto; padding: 0 40px">
+<p style="margin: 0 0 18px; display: flex; align-items: center; gap: 14px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.16em"><span style="width: 32px; height: 4px; background: #333333"></span>SERVICE</p>
+<h2 style="margin: 0 0 56px; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.4; color: #333333">お手伝いできること</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px">
+<div style="background: #FFFFFF; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 200px; background: #DDE3E0; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.08em; color: #545454">DUMMY — 引越し</span></div>
+<div style="padding: 32px 32px 36px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">01 MOVING</p>
+<h3 style="margin: 0; font-weight: 700; font-size: 22px; line-height: 1.5; color: #333333">特急引越</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.85">急に決まったお引越しも、できるだけ早く。少ない荷物の単身の方もどうぞ。</p>
+</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 200px; background: #D4DBD8; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.08em; color: #545454">DUMMY — 運搬</span></div>
+<div style="padding: 32px 32px 36px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">02 DELIVERY</p>
+<h3 style="margin: 0; font-weight: 700; font-size: 22px; line-height: 1.5; color: #333333">荷物・家具の運搬</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.85">大きな家具の移動や、近くへの荷物の配送に。車両と人手をご用意します。</p>
+</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 200px; background: #E6EAE8; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.08em; color: #545454">DUMMY — 草刈り</span></div>
+<div style="padding: 32px 32px 36px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">03 GARDEN</p>
+<h3 style="margin: 0; font-weight: 700; font-size: 22px; line-height: 1.5; color: #333333">草刈り・庭まわり</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.85">伸びた草や、手が回らなくなったお庭に。空き家の管理のご相談も。</p>
+</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 200px; background: #DDE3E0; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.08em; color: #545454">DUMMY — 修理</span></div>
+<div style="padding: 32px 32px 36px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">04 REPAIR</p>
+<h3 style="margin: 0; font-weight: 700; font-size: 22px; line-height: 1.5; color: #333333">家まわりの小さな修理</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.85">コンセントの不具合など、「業者に頼むほどでも…」という困りごとに。</p>
+</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 200px; background: #D4DBD8; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.08em; color: #545454">DUMMY — 片付け</span></div>
+<div style="padding: 32px 32px 36px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">05 OTHERS</p>
+<h3 style="margin: 0; font-weight: 700; font-size: 22px; line-height: 1.5; color: #333333">そのほかの困りごと</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.85">「これも頼める？」と思ったら、まずはひと言。できる方法を一緒に考えます。</p>
+</div>
+</div>
+<div style="background: #8DCDB4; border-radius: 4px; padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; gap: 20px; color: #333333">
+<p style="margin: 0; font-weight: 700; font-size: 22px; line-height: 1.6">写真を1枚送るだけで、<br>お見積もりの目安をお伝えします。</p>
+<a href="#" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; color: #333333; text-decoration: none; font-weight: 700; font-size: 16px">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5C6.8 3.5 2.8 6.8 2.8 10.9c0 2.5 1.5 4.7 3.9 6.1L6 20.5l3.9-2.3c.7.1 1.4.2 2.1.2 5.2 0 9.2-3.3 9.2-7.5S17.2 3.5 12 3.5Z" fill="#007F52"></path></svg>
+LINEで送る</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PARTNER -->
+<section style="max-width: 1360px; margin: 0 auto; padding: 140px 40px">
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px; align-items: center">
+<div style="grid-column: span 5; min-width: 280px; display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; display: flex; align-items: center; gap: 14px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.16em"><span style="width: 32px; height: 4px; background: #333333"></span>PARTNER</p>
+<h2 style="margin: 0; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.5; color: #333333">地元の運送会社と、<br>ひとつのチームで。</h2>
+<p style="margin: 0; font-size: 17px; line-height: 2.1">ご相談の窓口はnekoyashiki。運ぶ・動かす作業は、連携先の菊田総業が担当します。顔の見える距離で、最初から最後まで。</p>
+</div>
+<div style="grid-column: 7 / span 6; min-width: 300px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: stretch">
+<div style="border: 1px solid #E0E0E0; border-radius: 4px; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px">
+<svg width="40" height="40" viewBox="0 0 64 64" fill="none" stroke="#05AF6C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 3V15.8"></path><path d="M19.5 19.6Q32 12 44.5 19.6L49.5 15.5L50.2 24.5C52.8 29 54 34.5 54 40.5C54 51 44.5 57.5 32 57.5C19.5 57.5 10 51 10 40.5C10 34.5 11.2 29 13.8 24.5L14.5 15.5Z"></path><path d="M23 39h5"></path><path d="M36 39h5"></path><path d="M51 52.5C56.5 53 59 57 57 61"></path></svg>
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">CONTACT</p>
+<h3 style="margin: 0; font-weight: 700; font-size: 20px; line-height: 1.5; color: #333333">nekoyashiki</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.8">ご相談・お見積もり・日程の調整</p>
+</div>
+<div style="border: 1px solid #E0E0E0; border-radius: 4px; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#05AF6C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6.5h12v9.5H2Z"></path><path d="M14 9.5h4l3 3.5v3h-7"></path><circle cx="6.5" cy="17.5" r="2"></circle><circle cx="17" cy="17.5" r="2"></circle></svg>
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">WORK</p>
+<h3 style="margin: 0; font-weight: 700; font-size: 20px; line-height: 1.5; color: #333333">株式会社 菊田総業</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.8">仙台市宮城野区の運送会社。運搬・作業を担当</p>
+</div>
+<a href="#" style="grid-column: span 2; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 999px; border: 1.5px solid #545454; color: #333333; text-decoration: none; font-weight: 700; font-size: 16px">菊田総業のサイトを見る <span aria-hidden="true">↗</span></a>
+</div>
+</div>
+</section>
+
+<!-- FLOW -->
+<section style="background: #F3F8F6; padding: 140px 0">
+<div style="max-width: 1360px; margin: 0 auto; padding: 0 40px">
+<p style="margin: 0 0 18px; display: flex; align-items: center; gap: 14px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.16em"><span style="width: 32px; height: 4px; background: #333333"></span>FLOW</p>
+<h2 style="margin: 0 0 64px; font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.4; color: #333333">ご依頼の流れ</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px">
+<li style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #545454; padding-top: 24px">
+<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.14em; color: {{accent}}">STEP 01</span>
+<p style="margin: 0; font-weight: 700; font-size: 21px; line-height: 1.5; color: #333333">LINEでひと言</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.8">写真を添えていただくと、話が早く進みます</p>
+</li>
+<li style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #545454; padding-top: 24px">
+<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.14em; color: {{accent}}">STEP 02</span>
+<p style="margin: 0; font-weight: 700; font-size: 21px; line-height: 1.5; color: #333333">お見積もり</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.8">内容と日程をうかがい、金額をお伝えします。無料です</p>
+</li>
+<li style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #545454; padding-top: 24px">
+<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.14em; color: {{accent}}">STEP 03</span>
+<p style="margin: 0; font-weight: 700; font-size: 21px; line-height: 1.5; color: #333333">作業の日</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.8">スタッフがお伺いし、作業します</p>
+</li>
+<li style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #545454; padding-top: 24px">
+<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.14em; color: {{accent}}">STEP 04</span>
+<p style="margin: 0; font-weight: 700; font-size: 21px; line-height: 1.5; color: #333333">ご確認・お支払い</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.8">仕上がりを一緒に確かめて、完了です</p>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="background: #8DCDB4; padding: 120px 40px">
+<div style="max-width: 1120px; margin: 0 auto; position: relative; background: #FFFFFF; border-radius: 4px; padding: 88px 80px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
+<svg width="84" height="84" viewBox="0 0 64 64" fill="none" stroke="#05AF6C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; top: -58px; right: 96px"><path d="M32 3V15.8"></path><path d="M19.5 19.6Q32 12 44.5 19.6L49.5 15.5L50.2 24.5C52.8 29 54 34.5 54 40.5C54 51 44.5 57.5 32 57.5C19.5 57.5 10 51 10 40.5C10 34.5 11.2 29 13.8 24.5L14.5 15.5Z" fill="#FFFFFF"></path><path d="M23 39h5"></path><path d="M36 39h5"></path><path d="M51 52.5C56.5 53 59 57 57 61"></path></svg>
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: 0.16em">CONTACT</p>
+<h2 style="margin: 0; font-weight: 700; font-size: clamp(32px, 4vw, 52px); line-height: 1.4; color: #333333">困ったら、まずひと言。</h2>
+<p style="margin: 0; font-size: 18px; line-height: 2">お見積もりは無料です。「こんなこと頼めるかな」の段階から、お気軽にどうぞ。</p>
+<div style="margin-top: 8px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center">
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 80px; padding: 0 60px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 21px">
+<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5C6.8 3.5 2.8 6.8 2.8 10.9c0 2.5 1.5 4.7 3.9 6.1L6 20.5l3.9-2.3c.7.1 1.4.2 2.1.2 5.2 0 9.2-3.3 9.2-7.5S17.2 3.5 12 3.5Z" fill="#FFFFFF"></path></svg>
+LINEで相談する</a>
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: 68px; padding: 0 40px; border-radius: 999px; border: 1.5px solid #545454; color: #333333; text-decoration: none; font-weight: 700; font-size: 17px">フォームで問い合わせる</a>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #FFFFFF; overflow: hidden">
+<div style="max-width: 1360px; margin: 0 auto; padding: 112px 40px 0">
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px; padding-bottom: 72px; border-bottom: 1px solid #E0E0E0">
+<div style="grid-column: span 5; min-width: 300px; display: flex; flex-direction: column; gap: 28px">
+<a href="Main.dc.html" aria-label="nekoyashiki トップへ" style="display: flex; align-items: center; gap: 16px; text-decoration: none">
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#05AF6C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 3V15.8"></path><path d="M19.5 19.6Q32 12 44.5 19.6L49.5 15.5L50.2 24.5C52.8 29 54 34.5 54 40.5C54 51 44.5 57.5 32 57.5C19.5 57.5 10 51 10 40.5C10 34.5 11.2 29 13.8 24.5L14.5 15.5Z"></path><path d="M23 39h5"></path><path d="M36 39h5"></path><path d="M51 52.5C56.5 53 59 57 57 61"></path></svg>
+<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 19px; letter-spacing: 0.32em; color: #545454; display: flex; align-items: center">NEK<span style="display: inline-block; width: 0.66em; height: 0.66em; border-radius: 50%; background: #05AF6C; margin: 0 0.32em 0 0.04em"></span>YASHIKI</span>
+</a>
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 300; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.2; letter-spacing: -0.01em; color: #333333">Work, lighter.</p>
+<p style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 16px"><span style="width: 24px; height: 3px; background: #333333"></span>地域経済活性化のベストパートナー</p>
+</div>
+<nav aria-label="フッターメニュー" style="grid-column: span 3; min-width: 200px; display: flex; flex-direction: column; gap: 4px">
+<p style="margin: 0 0 14px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.16em; color: #05AF6C">MENU</p>
+<a href="Business.dc.html" style="text-decoration: none; color: #333333; font-size: 16px; min-height: 40px; display: flex; align-items: center">事業者様</a>
+<a href="Personal.dc.html" style="text-decoration: none; color: #333333; font-size: 16px; min-height: 40px; display: flex; align-items: center">個人様</a>
+<a href="#" style="text-decoration: none; color: #333333; font-size: 16px; min-height: 40px; display: flex; align-items: center">できること</a>
+<a href="#" style="text-decoration: none; color: #333333; font-size: 16px; min-height: 40px; display: flex; align-items: center">実績</a>
+<a href="About.dc.html" style="text-decoration: none; color: #333333; font-size: 16px; min-height: 40px; display: flex; align-items: center">わたしたち</a>
+<a href="#" style="text-decoration: none; color: #333333; font-size: 16px; min-height: 40px; display: flex; align-items: center">お問い合わせ</a>
+</nav>
+<div style="grid-column: span 4; min-width: 260px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0 0 8px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.16em; color: #05AF6C">CONTACT</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.9">〒980-0822<br>宮城県仙台市青葉区立町10-1</p>
+<a href="#" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 22px; letter-spacing: 0.06em; color: #333333; text-decoration: none">080-2815-3758</a>
+<a href="#" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; color: #333333; text-decoration: none">hello@nekoyashiki.life</a>
+<a href="#" style="margin-top: 14px; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 30px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 16px">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5C6.8 3.5 2.8 6.8 2.8 10.9c0 2.5 1.5 4.7 3.9 6.1L6 20.5l3.9-2.3c.7.1 1.4.2 2.1.2 5.2 0 9.2-3.3 9.2-7.5S17.2 3.5 12 3.5Z" fill="#FFFFFF"></path></svg>
+公式LINEを友だち追加</a>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding: 32px 0">
+<div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap; font-size: 15px">
+<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 0.16em; color: #05AF6C">LINKS</span>
+<a href="#" style="color: #333333; text-decoration: none">防犯タイムス ↗</a>
+<a href="#" style="color: #333333; text-decoration: none">株式会社 菊田総業 ↗</a>
+<a href="#" aria-label="Instagram" style="display: inline-flex; align-items: center; gap: 8px; color: #333333; text-decoration: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="0.6" fill="#333333"></circle></svg>Instagram</a>
+</div>
+</div>
+</div>
+<div aria-hidden="true" style="max-width: 1440px; margin: 0 auto; padding: 0 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500; font-size: clamp(56px, 12.4vw, 180px); line-height: 0.82; letter-spacing: 0.08em; color: #E3F2EC; white-space: nowrap; text-align: center; transform: translateY(0.12em)">NEKOYASHIKI</div>
+<div style="background: #8DCDB4">
+<div style="max-width: 1360px; margin: 0 auto; padding: 22px 40px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 14px; color: #333333">
+<p style="margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: 0.04em">Maximizing synergies in the City of Trees through the power of connection.</p>
+<div style="display: flex; gap: 28px; align-items: center; flex-wrap: wrap"><a href="#" style="color: #333333; text-decoration: none">プライバシーポリシー</a><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif">© 2026 nekoyashiki</span></div>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#007F52","options":["#007F52","#05AF6C","#3E8E74"]},"$preview":{"width":1440,"height":6200}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#007F52' };
+}
+}
+</script>
+</body>
+</html>

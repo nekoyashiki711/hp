@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 110" width="160" height="110" role="img" aria-label="丸くなって眠る猫">
+  <defs><filter id="s" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="2.6"/></filter></defs>
+  <ellipse cx="80" cy="96" rx="54" ry="4" fill="#8DCDB4" opacity="0.32" filter="url(#s)"/>
+  <g fill="none" stroke="#7CC3A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#F1F8F5" d="M30 74C30 52 52 40 80 40C108 40 130 52 130 72C130 86 112 92 80 92C50 92 30 88 30 74Z"/>
+    <path fill="#F1F8F5" d="M34 66L32 52L42 58C46 56 52 56 56 58L64 52L64 64C67 68 67 74 64 78C60 83 54 85 48 85C42 85 37 83 34 78C31 74 31 69 34 66Z"/>
+    <path d="M40 70q3 2.4 6 0"/>
+    <path d="M51 70q3 2.4 6 0"/>
+    <path d="M128 76C126 88 104 92 84 90C74 89 68 87 64 84"/>
+  </g>
+</svg>

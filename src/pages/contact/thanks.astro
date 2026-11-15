@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE, PATHS, telHref } from '../../config/site';
+---
+<Base title="送信が完了しました｜nekoyashiki" description="お問い合わせを受け付けました。" noindex>
+  <section class="sub-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><a href={PATHS.contact}>お問い合わせ</a><span aria-hidden="true">/</span><span aria-current="page">送信完了</span></nav>
+      <div class="sub-hero__grid sub-hero__text sub-hero__text--narrow">
+        <p class="eyebrow" lang="en">THANK YOU</p>
+        <h1 class="sub-hero__title sub-hero__title--sm">お問い合わせを<br />受け付けました。</h1>
+        <p class="sub-hero__lead">ありがとうございます。ご入力いただいたメールアドレスに、受付の確認メールをお送りしました。内容を確認して、こちらから折り返しご連絡します。</p>
+      </div>
+    </div>
+  </section>
+  <section class="section section--light">
+    <div class="container">
+      <div class="prose">
+        <p>確認メールが届かない場合は、迷惑メールフォルダをご確認ください。それでも見当たらないときは、メールアドレスの入力に誤りがあったかもしれません。お手数ですが、お電話（<a href={telHref}>{SITE.tel}</a>、{SITE.hours}）でお知らせください。</p>
+        <p><a href="/" class="btn btn--outline btn--md">トップページへ戻る</a></p>
+      </div>
+    </div>
+  </section>
+</Base>

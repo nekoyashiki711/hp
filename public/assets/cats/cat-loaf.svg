@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120" role="img" aria-label="香箱座りで眠る猫">
+  <defs><filter id="s" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="2.6"/></filter></defs>
+  <ellipse cx="102" cy="105" rx="78" ry="4" fill="#8DCDB4" opacity="0.32" filter="url(#s)"/>
+  <g transform="translate(6 2) scale(1.9)" fill="none" stroke="#7CC3A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path vector-effect="non-scaling-stroke" fill="#F1F8F5" d="M12 52C10 40 14 31 22 27L20 15L30 22C33 21 37 21 40 22L48 14L48 27C58 26 74 27 84 33C92 38 94 46 90 52Z"/>
+    <path vector-effect="non-scaling-stroke" d="M24 38q3 2.5 6 0"/>
+    <path vector-effect="non-scaling-stroke" d="M36 38q3 2.5 6 0"/>
+    <path vector-effect="non-scaling-stroke" d="M90 52C96 52 98 46 94 43"/>
+  </g>
+</svg>

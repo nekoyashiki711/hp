@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaPair from '../components/CtaPair.astro';
+import CtaLine from '../components/CtaLine.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Flow from '../components/Flow.astro';
+import Dummy from '../components/Dummy.astro';
+import Cat from '../components/Cat.astro';
+import Icon from '../components/Icon.astro';
+import { LINKS, hasLine, mailHref } from '../config/site';
+
+const items = [
+  { en: '01 MOVING', t: '特急引越', p: '急に決まったお引越しも、できるだけ早く。少ない荷物の単身の方もどうぞ。', photo: '引越し', tone: 2 },
+  { en: '02 DELIVERY', t: '荷物・家具の運搬', p: '大きな家具の移動や、近くへの荷物の配送に。車両と人手をご用意します。', photo: '運搬', tone: 3 },
+  { en: '03 GARDEN', t: '草刈り・庭まわり', p: '伸びた草や、手が回らなくなったお庭に。空き家の管理のご相談も。', photo: '草刈り', tone: 1 },
+  { en: '04 REPAIR', t: '家まわりの小さな修理', p: 'コンセントの不具合など、「業者に頼むほどでも…」という困りごとに。', photo: '修理', tone: 2 },
+  { en: '05 OTHERS', t: 'そのほかの困りごと', p: '「これも頼める？」と思ったら、まずはひと言。できる方法を一緒に考えます。', photo: '片付け', tone: 3 },
+] as const;
+const flow = [
+  hasLine
+    ? { title: 'LINEでひと言', text: '写真を添えていただくと、話が早く進みます' }
+    : { title: 'フォームかお電話でひと言', text: 'メールで写真を添えていただくと、話が早く進みます' },
+  { title: 'お見積もり', text: '内容と日程をうかがい、金額をお伝えします。無料です' },
+  { title: '作業の日', text: 'スタッフがお伺いし、作業します' },
+  { title: 'ご確認・お支払い', text: '仕上がりを一緒に確かめて、完了です' },
+];
+const photoMail = mailHref('写真を送って相談（個人様）');
+---
+<Base
+  title="個人様へ｜引越し・運搬・草刈り・小さな修理｜nekoyashiki（宮城県）"
+  description="お引越しから、家まわりの小さな修理まで。地元の運送会社・菊田総業と連携し、宮城県内の暮らしの「ちょっと困った」にすぐ動きます。お見積もり無料。"
+>
+  <section class="sub-hero has-cats">
+    <div class="bg-cats" aria-hidden="true">
+      <Cat name="loaf" width={200} widthSp={140} motion="drift" d={-60} r0={0} r1={-2} style="right: max(24px, calc((100% - 1360px) / 2 + 40px)); bottom: 8px;" />
+    </div>
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">個人様</span></nav>
+      <div class="g12 g12--center sub-hero__grid">
+        <div class="span-6 sub-hero__text">
+          <p class="eyebrow" lang="en">FOR PERSONAL</p>
+          <h1 class="sub-hero__title sub-hero__title--personal">暮らしの<br /><span class="nowrap">「ちょっと困った」に、</span><br />すぐ動く。</h1>
+          <p class="sub-hero__lead">お引越しから、家まわりの小さな修理まで。地元の運送会社・菊田総業と連携し、車両と人手が必要なことも、まとめてお引き受けします。</p>
+          <CtaPair lineLabel="LINEで写真を送って相談" fallbackLabel="フォームで相談する" />
+          <p class="sub-hero__note">お見積もり無料・宮城県内に伺います</p>
+        </div>
+        <div class="at-8-5"><Dummy class="sub-hero__photo" label="DUMMY PHOTO — 家まわり・作業の様子" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <SectionHead en="SERVICE" title="お手伝いできること" />
+      <div class="p-grid">
+        {items.map((it) => (
+          <div class="p-card">
+            <Dummy label={`DUMMY — ${it.photo}`} tone={it.tone} />
+            <div class="p-card__body">
+              <p class="p-card__en" lang="en">{it.en}</p>
+              <h3>{it.t}</h3>
+              <p>{it.p}</p>
+            </div>
+          </div>
+        ))}
+        <div class="p-card p-card--mint">
+          <p>写真を1枚送るだけで、<br />お見積もりの目安をお伝えします。</p>
+          <CtaLine label="LINEで送る" fallbackLabel="メールで送る" fallbackHref={photoMail} class="btn btn--white-plain" iconSize={20} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container g12 g12--center">
+      <div class="span-5 partner__text">
+        <SectionHead en="PARTNER" title="地元の運送会社と、<br />ひとつのチームで。" />
+        <p>ご相談の窓口はnekoyashiki。運ぶ・動かす作業は、連携先の菊田総業が担当します。顔の見える距離で、最初から最後まで。</p>
+      </div>
+      <div class="at-7-6 partner__cards">
+        <div class="partner-card">
+          <Icon name="logo" size={40} stroke="#05AF6C" width={2.8} />
+          <p class="partner-card__en" lang="en">CONTACT</p>
+          <h3>nekoyashiki</h3>
+          <p>ご相談・お見積もり・日程の調整</p>
+        </div>
+        <div class="partner-card">
+          <Icon name="truck" size={40} width={1.4} />
+          <p class="partner-card__en" lang="en">WORK</p>
+          <h3>株式会社 菊田総業</h3>
+          <p>仙台市宮城野区の運送会社。運搬・作業を担当</p>
+        </div>
+        <a href={LINKS.kikuta} class="btn btn--outline" target="_blank" rel="noopener">菊田総業のサイトを見る <span aria-hidden="true">↗</span><span class="visually-hidden">（新しいタブで開きます）</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <SectionHead en="FLOW" title="ご依頼の流れ" class="flow__head" />
+      <Flow steps={flow} cat={false} />
+    </div>
+  </section>
+
+  <CtaSection title="困ったら、まずひと言。" lead="お見積もりは無料です。「こんなこと頼めるかな」の段階から、お気軽にどうぞ。" />
+</Base>

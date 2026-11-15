@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { render } from 'astro:content';
+import { getPosts, fmtDate, isoDate, type Post } from '../../lib/blog';
+import { SITE, PATHS } from '../../config/site';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({ params: { slug: post.id }, props: { post, newer: posts[i - 1], older: posts[i + 1] } }));
+}
+interface Props { post: Post; newer?: Post; older?: Post }
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const url = new URL(`/blog/${post.id}/`, SITE.url).href;
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: isoDate(post.data.date),
+    dateModified: isoDate(post.data.updated ?? post.data.date),
+    mainEntityOfPage: url,
+    image: new URL('/og.png', SITE.url).href,
+    author: { '@type': 'Person', name: SITE.representative, url: new URL(PATHS.about, SITE.url).href },
+    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: new URL('/icon-512.png', SITE.url).href } },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'トップ', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: 'コラム', item: new URL(PATHS.blog, SITE.url).href },
+      { '@type': 'ListItem', position: 3, name: post.data.title, item: url },
+    ],
+  },
+];
+---
+<Base title={`${post.data.title}｜nekoyashiki`} description={post.data.description} noindex={post.data.draft} article={{ published: isoDate(post.data.date), modified: isoDate(post.data.updated ?? post.data.date) }}>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} slot="head" />
+  <section class="sub-hero sub-hero--post">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><a href={PATHS.blog}>コラム</a><span aria-hidden="true">/</span><span aria-current="page">{post.data.title}</span></nav>
+      <div class="post-head">
+        <p class="post-item__meta">
+          <time datetime={isoDate(post.data.date)}>{fmtDate(post.data.date)}</time>
+          {post.data.updated && <span>（更新 <time datetime={isoDate(post.data.updated)}>{fmtDate(post.data.updated)}</time>）</span>}
+          <span class="post-item__cat">{post.data.category}</span>
+        </p>
+        <h1 class="post-head__title">{post.data.title}</h1>
+        <p class="post-head__author">書いた人：{SITE.name} 代表 {SITE.representative}（{SITE.nickname}）</p>
+      </div>
+    </div>
+  </section>
+  <section class="section section--post">
+    <div class="container">
+      <article class="prose post-body">
+        <Content />
+      </article>
+      <nav class="post-nav" aria-label="ほかの記事">
+        {newer ? <a href={`/blog/${newer.id}/`} class="post-nav__a"><span>新しい記事</span>{newer.data.title}</a> : <span />}
+        {older ? <a href={`/blog/${older.id}/`} class="post-nav__a post-nav__a--older"><span>前の記事</span>{older.data.title}</a> : <span />}
+      </nav>
+      <p class="post-back"><a href={PATHS.blog} class="btn btn--outline btn--md">コラムの一覧へ</a></p>
+    </div>
+  </section>
+  <CtaSection title="読んで気になったら、<br />ひと言どうぞ。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />
+</Base>

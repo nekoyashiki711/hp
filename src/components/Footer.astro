@@ -1,0 +1,59 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import CtaLine from './CtaLine.astro';
+import Cat from './Cat.astro';
+import { SITE, NAV, LINKS, PATHS, telHref, mailHref } from '../config/site';
+interface Props {
+  cat?: boolean;
+}
+const { cat = false } = Astro.props;
+---
+<footer class="site-footer has-cats">
+  {cat && (
+    <div class="bg-cats" aria-hidden="true">
+      <Cat name="sit" width={90} motion="drift" d={50} r0={3} r1={-3} style="right: 12%; bottom: clamp(120px, 14vw, 230px);" hideSp />
+    </div>
+  )}
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <Logo variant="footer" />
+      <p class="site-footer__catch" lang="en">{SITE.catchEn}</p>
+      <p class="site-footer__tagline">{SITE.tagline}</p>
+    </div>
+    <nav class="site-footer__menu" aria-label="フッターメニュー">
+      <p class="foot-label">MENU</p>
+      <div class="site-footer__menu-list">
+        {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </nav>
+    <div class="site-footer__contact">
+      <p class="foot-label">CONTACT</p>
+      <p class="site-footer__addr">〒{SITE.postalCode}<br class="pc-only" /> {SITE.address}</p>
+      <a href={telHref} class="site-footer__tel">{SITE.tel}</a>
+      <a href={mailHref()} class="site-footer__mail">{SITE.email}</a>
+      <p class="site-footer__hours">受付時間 {SITE.hours}</p>
+      <CtaLine label="公式LINEを友だち追加" fallbackLabel="フォームで問い合わせる" class="btn btn--primary btn--md site-footer__line" iconSize={18} />
+    </div>
+  </div>
+  <div class="container">
+    <div class="site-footer__links">
+      <p class="foot-label">LINKS</p>
+      <a href={LINKS.bouhan} target="_blank" rel="noopener">防犯タイムス <span aria-hidden="true">↗</span><span class="visually-hidden">（新しいタブで開きます）</span></a>
+      <a href={LINKS.kikuta} target="_blank" rel="noopener">株式会社 菊田総業 <span aria-hidden="true">↗</span><span class="visually-hidden">（新しいタブで開きます）</span></a>
+      {LINKS.instagram && (
+        <a href={LINKS.instagram} target="_blank" rel="noopener" class="site-footer__ig"><Icon name="instagram" size={20} />Instagram</a>
+      )}
+    </div>
+  </div>
+  <div class="site-footer__big" aria-hidden="true" data-text="NEKOYASHIKI"></div>
+  <div class="site-footer__band">
+    <div class="container site-footer__band-inner">
+      <p lang="en">{SITE.taglineEn}</p>
+      <div class="site-footer__band-right">
+        <a href={PATHS.privacy}>プライバシーポリシー</a>
+        <small lang="en">© 2026 nekoyashiki</small>
+      </div>
+    </div>
+  </div>
+</footer>

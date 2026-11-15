@@ -1,0 +1,54 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import CtaLine from './CtaLine.astro';
+import { NAV, hasLine, telHref } from '../config/site';
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || path === href.replace(/\/$/, '');
+---
+<header class="site-header">
+  <div class="site-header__inner">
+    <Logo />
+    <nav class="gnav" aria-label="メインメニュー">
+      {NAV.map((item) => (
+        <a href={item.href} class="gnav__link" aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+      <CtaLine label="LINEで相談" fallbackLabel="無料相談" class="btn btn--primary btn--sm gnav__cta" iconSize={18} />
+    </nav>
+    <div class="site-header__sp">
+      <CtaLine label="LINEで相談" fallbackLabel="無料相談" class="btn btn--primary btn--xs" iconSize={15} />
+      <button type="button" class="menu-toggle" aria-label="メニューを開く" aria-controls="sp-menu" aria-expanded="false" data-menu-open>
+        <Icon name="menu" size={24} width={1.8} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog id="sp-menu" class="sp-menu" aria-label="メニュー">
+  <div class="sp-menu__head">
+    <Logo />
+    <button type="button" class="menu-toggle" aria-label="メニューを閉じる" data-menu-close>
+      <Icon name="close" size={24} width={1.8} />
+    </button>
+  </div>
+  <nav class="sp-menu__nav" aria-label="メインメニュー（スマホ）">
+    {NAV.map((item) => (
+      item.en ? (
+        <a href={item.href} class="sp-menu__link sp-menu__link--main" aria-current={isCurrent(item.href) ? 'page' : undefined}>
+          <span class="sp-menu__label"><span class="sp-menu__en">{item.en}</span>{item.label}</span><span aria-hidden="true" class="sp-menu__arrow">→</span>
+        </a>
+      ) : (
+        <a href={item.href} class="sp-menu__link" aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}<span aria-hidden="true">→</span></a>
+      )
+    ))}
+  </nav>
+  <div class="sp-menu__cta">
+    <CtaLine label="LINEで無料相談する" class="btn btn--primary btn--lg btn--block" />
+    {hasLine ? (
+      <a href="/contact/" class="btn btn--white-plain btn--lg-sub btn--block">フォームで問い合わせる</a>
+    ) : (
+      <a href={telHref} class="btn btn--white-plain btn--lg-sub btn--block"><Icon name="phone" size={20} />電話で相談する</a>
+    )}
+    <p class="sp-menu__note">相談無料・宮城県全域に伺います</p>
+  </div>
+</dialog>
