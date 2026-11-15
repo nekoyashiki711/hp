@@ -3,10 +3,49 @@ import Base from '../layouts/Base.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { LINKS } from '../config/site';
+
+const cases = [
+  {
+    cat: '運送・建築',
+    t: '株式会社 菊田総業',
+    p: '仙台の運送・建築の会社で、約10年にわたり現場の実務と事務を担当。事務の流れの見直しと事務代行、HPの制作・運営を行っています。個人様向けのお引越しや草刈りなどは、菊田総業と連携してお受けしています。',
+    tags: ['事務の効率化', '事務代行', 'HP制作・運営'],
+    href: LINKS.kikuta,
+    host: 'kikuta.group',
+  },
+  {
+    cat: '地方創生',
+    t: '地方創生プロジェクトの運営支援',
+    p: '約7年にわたり、地方創生プロジェクトの運営を支援。HPの制作、SNSの運営、AI活用のアドバイスなどを担当してきました。',
+    tags: ['HP制作', 'SNS運営', 'AI活用'],
+    note: 'サイトの事例は、掲載の準備中です。',
+  },
+  {
+    cat: 'メディア',
+    t: '防犯タイムス',
+    p: '地域の「いま」を届ける情報メディアを、企画から運営まで行っています。',
+    tags: ['メディア運営', '企画'],
+    href: LINKS.bouhan,
+    host: 'bouhan.news',
+  },
+  {
+    cat: 'イベント・音響',
+    t: '仙台の大型街フェス（2015年）',
+    p: '仙台のまちを舞台にした大型の街フェスを主催。企画・運営から当日の音響・DJまで関わりました。',
+    tags: ['イベント企画', '運営', '音響・DJ'],
+  },
+  {
+    cat: '新しい収益づくり',
+    t: '運送会社さまの車両広告',
+    p: '運送会社さまのトラックを広告媒体として活用する取り組みです。約30台の車両について、広告掲載の確約をいただいています。',
+    tags: ['車両広告', '本業以外の売上'],
+    note: '掲載の開始に向けて準備中です。',
+  },
+];
 ---
 <Base
   title="実績｜nekoyashiki"
-  description="nekoyashiki のこれまでの歩みと実績。車両広告、地方創生プロジェクトの運営支援、仙台での街フェス開催、防犯タイムスの運営、株式会社 菊田総業の事務効率化・HP制作運営など。"
+  description="nekoyashiki のこれまでの歩みと実績。株式会社 菊田総業の事務効率化・HP制作運営、地方創生プロジェクトの運営支援、防犯タイムスの運営、仙台での街フェス開催、運送会社さまとの車両広告の取り組みなど。"
 >
   <section class="sub-hero">
     <div class="container">
@@ -25,7 +64,7 @@ import { LINKS } from '../config/site';
       <div class="works__stats">
         <div class="work-stat">
           <p class="work-stat__num"><span>約</span><b>30</b><span>台</span></p>
-          <p class="work-stat__text">運送会社さまの車両に、<br class="pc-only" />広告の掲載が決定</p>
+          <p class="work-stat__text">運送会社さまの車両への<br class="pc-only" />広告掲載について、確約をいただきました<small class="stat-note">掲載の開始に向けて準備中です</small></p>
         </div>
         <div class="work-stat">
           <p class="work-stat__num"><b>7</b><span>年</span></p>
@@ -44,14 +83,24 @@ import { LINKS } from '../config/site';
   </section>
 
   <section class="section">
-    <div class="container g12">
-      <div class="span-4"><SectionHead en="CASE" title="お手伝いした事例" class="h2--flush" /></div>
-      <dl class="at-6-7 dlist">
-        <div><dt>株式会社 菊田総業</dt><dd>事務の効率化・事務代行、HPの制作・運営<br /><a href={LINKS.kikuta} target="_blank" rel="noopener">kikuta.group <span aria-hidden="true">↗</span><span class="visually-hidden">（新しいタブで開きます）</span></a></dd></div>
-        <div><dt>防犯タイムス</dt><dd>地域情報メディアの企画・運営<br /><a href={LINKS.bouhan} target="_blank" rel="noopener">bouhan.news <span aria-hidden="true">↗</span><span class="visually-hidden">（新しいタブで開きます）</span></a></dd></div>
-      </dl>
+    <div class="container">
+      <SectionHead en="CASE" title="お手伝いしてきたこと" class="works__head" />
+      <ul class="cases">
+        {cases.map((c) => (
+          <li class="case">
+            <p class="case__cat">{c.cat}</p>
+            <h3 class="case__h">{c.t}</h3>
+            <p class="case__p">{c.p}</p>
+            <div class="tags">{c.tags.map((t) => <span class="tag">{t}</span>)}</div>
+            {c.href && (
+              <a class="case__link" href={c.href} target="_blank" rel="noopener">{c.host}<span aria-hidden="true"> ↗</span><span class="visually-hidden">（新しいタブで開きます）</span></a>
+            )}
+            {c.note && <p class="case__note">{c.note}</p>}
+          </li>
+        ))}
+      </ul>
+      <p class="soon">制作物の画像や、改善の事例は準備ができしだい掲載します。</p>
     </div>
-    <div class="container"><p class="soon">そのほかの実績（地方創生プロジェクトのサイトなど）は、準備ができしだい掲載します。</p></div>
   </section>
 
   <CtaSection title="まずは、お話から。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />

@@ -3,7 +3,8 @@ import Base from '../layouts/Base.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaPair from '../components/CtaPair.astro';
 import CtaSection from '../components/CtaSection.astro';
-import { PATHS } from '../config/site';
+import Flow from '../components/Flow.astro';
+import { PATHS, hasLine } from '../config/site';
 
 const services = [
   { id: 'dx', t: '業務のIT・DX化', p: '日報、配車表、工程表、見積・請求、現場写真共有などのデジタル化。既製クラウドの導入・設定・定着まで支援します。', tags: ['日報', '配車表', '工程表', '見積・請求', '現場写真共有'] },
@@ -14,6 +15,19 @@ const services = [
   { id: 'sns', t: 'SNS運用支援', p: 'Instagram・TikTok・YouTubeを活用した認知拡大。企画・撮影・編集・投稿などは、ご予算に応じて個別にご提案します。', tags: ['Instagram', 'TikTok', 'YouTube'] },
   { id: 'revenue', t: '車両広告・新しい収益づくり', p: '車両を活用した広告や、本業以外の収益づくりを企画・ご提案します。運送会社さまと広告主をつなぐ取り組みです。', tags: ['車両広告', '本業以外の売上'] },
   { id: 'people', t: '人手不足への対応・企業間連携', p: '採用や業務改善のご提案、協力会社など企業同士の橋渡しをします。', tags: ['採用の改善', '協力会社の紹介'] },
+];
+const flow = [
+  { title: 'まずは、ひと言', text: hasLine ? 'LINEかフォームで、お気軽にどうぞ' : 'フォームかお電話で、お気軽にどうぞ' },
+  { title: 'お話を聞かせてください', text: '訪問またはオンラインで、じっくりと' },
+  { title: 'ちょうどいい形をご提案', text: 'ご予算に合わせて、お見積もりをお出しします', free: true },
+  { title: 'かたちにして、その先も', text: '導入・制作のあとも、となりで伴走します' },
+];
+const faq = [
+  { q: '相談だけでも料金はかかりますか？', a: 'かかりません。ご契約までは、何度ご相談いただいても無料です。仙台市内であれば、訪問の交通費もいただきません。' },
+  { q: 'お見積もりのあとに、お断りしても大丈夫ですか？', a: 'はい、大丈夫です。ご提案やお見積もりを見てから、ゆっくりご検討ください。' },
+  { q: 'ひとつのサービスだけでも頼めますか？', a: 'はい。名刺1種類、日報のデジタル化だけ、といったご相談も歓迎です。組み合わせる場合も、窓口はひとつです。' },
+  { q: 'マーケティング支援の月額には、何が含まれますか？', a: 'HPの文章・画像の更新、記事作成（月1本）、アクセス分析、SEOのご相談、キーワード分析、Googleマップ対策（MEO）の分析です。2本目以降の記事や新しいページの制作は、別途お見積もりします。' },
+  { q: '宮城県外でもお願いできますか？', a: 'はい。宮城県内は訪問、県外の方はオンラインで対応します。' },
 ];
 ---
 <Base
@@ -64,6 +78,7 @@ const services = [
             <tr><th scope="row">マーケティング支援</th><td>月額 <b>33,000</b>円〜<small>HPの文章・画像更新、記事作成（月1本）、アクセス分析、SEO相談、キーワード分析、Googleマップ対策の分析を含みます</small></td></tr>
             <tr><th scope="row">SNS運用支援</th><td>月額 <b>33,000</b>円〜<small>マーケティング支援とは別のご契約です</small></td></tr>
             <tr><th scope="row">IT・DX化、事務支援、デザイン、その他</th><td>個別にお見積もり</td></tr>
+            <tr><th scope="row">個人様のご依頼<small>引越し・運搬・草刈り・小さな修理など</small></th><td>お見積もり無料<small>内容と日程をうかがって、金額をお伝えします</small></td></tr>
             <tr><th scope="row">訪問の交通費</th><td>仙台市内は無料<small>遠方の場合はご相談ください</small></td></tr>
           </tbody>
         </table>
@@ -72,6 +87,27 @@ const services = [
           <li>SNS運用支援の対象媒体数・投稿本数・作業範囲は、ご予算に応じて個別にご提案します。</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <SectionHead en="FLOW" title="ご相談の流れ" class="flow__head" />
+      <Flow steps={flow} freeTone="white" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container g12">
+      <div class="span-4"><SectionHead en="FAQ" title="料金のご質問" class="h2--flush" /></div>
+      <dl class="at-6-7 faq">
+        {faq.map((f) => (
+          <div>
+            <dt><span aria-hidden="true">Q</span>{f.q}</dt>
+            <dd>{f.a}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </section>
 

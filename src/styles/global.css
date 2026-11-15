@@ -291,12 +291,17 @@ a:hover { color: var(--green); }
 
 /* ---------- 写真のダミー枠 ---------- */
 .dummy {
-  display: flex; align-items: flex-end; padding: 20px; border-radius: 4px; background: #e9edeb;
-  font-family: var(--hv); font-size: 13px; letter-spacing: 0.1em; line-height: 1.5; color: var(--text);
+  position: relative; display: flex; align-items: flex-end; padding: 20px; border-radius: 4px; overflow: hidden;
+  background-color: #eef3f1; color: #9db8ad;
+  background-image: radial-gradient(currentColor 1px, transparent 1.2px); background-size: 18px 18px;
+  font-family: var(--hv); font-size: 13px; letter-spacing: 0.1em; line-height: 1.5;
 }
-.dummy--2 { background: #dde3e0; }
-.dummy--3 { background: #d4dbd8; }
-.dummy--green { background: #217f5e; color: var(--white); }
+.dummy__mark { position: absolute; left: 50%; top: 50%; width: clamp(40px, 22%, 96px); height: auto; transform: translate(-50%, -50%); color: #7fa898; opacity: 0.55; }
+.dummy__cap { position: relative; padding: 4px 10px; border-radius: 999px; background: var(--white); color: var(--head); font-family: var(--jp); font-weight: 700; letter-spacing: 0.04em; }
+.dummy--2 { background-color: #e6efeb; color: #a9c4b9; }
+.dummy--3 { background-color: #dfeae5; color: #a2bfb3; }
+.dummy--green { background-color: #217f5e; color: #3d9675; }
+.dummy--green .dummy__mark { color: #ffffff; opacity: 0.35; }
 @media (max-width: 767px) { .dummy { padding: 10px; font-size: 11px; letter-spacing: 0.08em; } }
 
 /* ---------- 背景の猫 ---------- */
@@ -982,3 +987,27 @@ main { overflow-x: clip; }
 .sub-hero__title--personal .nowrap { font-feature-settings: 'palt'; margin-left: -0.5em; }
 @media (max-width: 767px) { .sub-hero__title--personal { font-size: min(30px, 8vw); } }
 @media (max-width: 1023px) { .square { width: 100%; max-width: 520px; } }
+
+/* 数字の補足（例：約30台は確約で、掲載開始は準備中） */
+.stat-note { display: block; margin-top: 6px; font-size: 13px; line-height: 1.6; color: var(--text); opacity: 0.85; }
+.price-table th small { display: block; margin-top: 2px; font-weight: 400; font-size: 14px; color: var(--text); }
+
+/* 実績：お手伝いしてきたこと */
+.cases { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.case { display: flex; flex-direction: column; gap: 12px; padding: 36px 36px 32px; border: 1px solid var(--line); border-radius: 4px; background: var(--white); }
+.case__cat { font-size: 14px; font-weight: 700; color: var(--green); letter-spacing: 0.06em; }
+.case__h { font-size: 22px; line-height: 1.5; color: var(--head); }
+.case__p { font-size: 16px; line-height: 1.9; }
+.case .tags { margin-top: 4px; }
+.case__link { align-self: flex-start; margin-top: auto; padding-top: 8px; font-family: var(--hv); color: var(--head); }
+.case__note { margin-top: auto; padding-top: 8px; font-size: 14px; color: var(--text); }
+.case__note::before { content: '※'; margin-right: 0.2em; }
+@media (max-width: 1023px) { .cases { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 767px) {
+  .cases { gap: 12px; }
+  .case { padding: 24px 20px; gap: 10px; }
+  .case__h { font-size: 19px; }
+  .case__p { font-size: 15px; line-height: 1.8; }
+}
+.contact-after-note { margin-top: 40px; font-size: 15px; line-height: 1.8; }
+.prose__date { margin-top: 48px; text-align: right; }

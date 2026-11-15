@@ -29,10 +29,12 @@ export const SITE = {
 export const LINE_URL = '';
 
 /**
- * お問い合わせフォームの送信先（Formspree などのエンドポイント。例: https://formspree.io/f/xxxxxxx）。
- * 空のあいだは、送信ボタンでメールアプリが開き、入力内容がメール本文に入ります。
+ * お問い合わせフォームの送信先。
+ * エックスサーバーでは public/contact.php（PHP のメール送信）を使います。
+ * 空にすると、送信ボタンでメールアプリが開き、入力内容がメール本文に入る方式に戻ります。
+ * ※ npm run dev では PHP が動かないため、送信の確認は公開後の本番サイトで行ってください。
  */
-export const FORM_ENDPOINT = '';
+export const FORM_ENDPOINT = '/contact.php';
 
 export const LINKS = {
   bouhan: 'https://bouhan.news/',
