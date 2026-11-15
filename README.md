@@ -16,7 +16,9 @@
 | 実績 | `/works/` | `src/pages/works.astro` |
 | わたしたち | `/about/` | `src/pages/about.astro` |
 | お問い合わせ | `/contact/` | `src/pages/contact.astro` |
+| コラム（ブログ） | `/blog/` | `src/pages/blog/`・記事は `src/content/blog/` |
 | プライバシーポリシー | `/privacy/` | `src/pages/privacy.astro` |
+| 送信完了 | `/contact/thanks/` | `src/pages/contact/thanks.astro`（noindex） |
 | 採用情報（非公開） | `/recruit/` | `src/pages/recruit.astro` |
 
 採用情報は `noindex` で、どのページからもリンクしておらず、サイトマップにも載せていません。
@@ -55,7 +57,7 @@ Cloudflare Pages / Netlify / Vercel の場合は、このリポジトリをつ�
 
 - 写真：`Dummy` コンポーネントの枠（薄いグレー）。写真が届いたら `<img>` に置き換えます。
 - 採用情報の【】の項目。
-- 公式LINEのURL、フォームの送信先、Instagram のURL。
+- 公式LINEのURL、Instagram のURL。
 
 ## エックスサーバーへの公開
 
@@ -65,3 +67,15 @@ Cloudflare Pages / Netlify / Vercel の場合は、このリポジトリをつ�
 - **手動**：`npm run build` でできた `dist/` の中身を、ファイルマネージャーで `public_html` にアップロードします（`.htaccess` も含めます）。
 
 `public/.htaccess` で http・www を `https://nekoyashiki.life` に転送しています。サーバーパネルで無料SSLを有効にしてから公開してください。
+
+## コラム（ブログ）の書き方
+
+1. `src/content/blog/_template.md` をコピーし、ファイル名を英数字とハイフンにします（例 `dx-nippo.md` → `https://nekoyashiki.life/blog/dx-nippo/`）。
+2. 先頭の `title`・`description`・`date`・`category` を書き、本文を Markdown で書きます。
+3. 公開するときは `draft: false` にして `main` に入れると、自動で公開されます。一覧・サイトマップ・RSS（`/rss.xml`）にも自動で載ります。
+
+`draft: true` の記事は `npm run dev` のときだけ表示され、本番には出ません。
+
+## お問い合わせフォーム
+
+送信は `public/contact.php`（エックスサーバーの PHP でメール送信）。届け先・差出人・自動返信の署名はファイル先頭の「設定」で変えられます。`npm run dev` では PHP が動かないので、送信の確認は本番サイトで行ってください。

@@ -54,6 +54,7 @@ export const PATHS = {
   contact: '/contact/',
   privacy: '/privacy/',
   recruit: '/recruit/',
+  blog: '/blog/',
 };
 
 // ヘッダー・フッター・スマホメニュー共通（採用情報は載せない）
@@ -63,6 +64,7 @@ export const NAV = [
   { href: PATHS.services, label: 'できること' },
   { href: PATHS.works, label: '実績' },
   { href: PATHS.about, label: 'わたしたち' },
+  { href: PATHS.blog, label: 'コラム' },
   { href: PATHS.contact, label: 'お問い合わせ' },
 ];
 
