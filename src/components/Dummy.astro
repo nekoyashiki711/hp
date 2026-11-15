@@ -10,7 +10,7 @@ interface Props {
 }
 const { label, caption, class: cls, tone = 1 } = Astro.props;
 ---
-<div class:list={['dummy', `dummy--${tone}`, cls]} data-photo={label} aria-hidden="true">
+<div class:list={['dummy', `dummy--${tone}`, cls]} data-photo={label.replace(/^DUMMY( PHOTO)?( — )?/, '') || undefined} aria-hidden="true">
   <Icon name="logo" class="dummy__mark" size={64} width={2.4} />
   {caption && <span class="dummy__cap">{caption}</span>}
 </div>
