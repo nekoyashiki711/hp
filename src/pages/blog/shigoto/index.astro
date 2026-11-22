@@ -1,0 +1,9 @@
+---
+import BlogListPage from '../../../components/BlogListPage.astro';
+import { SERIES } from '../../../config/blog';
+import { getPosts, seriesOf } from '../../../lib/blog';
+const s = SERIES.shigoto;
+const all = await getPosts();
+const posts = all.filter((p) => seriesOf(p) === 'shigoto');
+---
+<BlogListPage title={s.title} description={s.description} heading={s.label} eyebrow={s.en} lead={s.lead} posts={posts} series="shigoto" usedCategories={posts.map((p) => p.data.category)} />

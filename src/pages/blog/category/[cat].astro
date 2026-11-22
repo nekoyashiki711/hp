@@ -1,0 +1,28 @@
+---
+import BlogListPage from '../../../components/BlogListPage.astro';
+import { CATEGORIES, SERIES } from '../../../config/blog';
+import { getPosts, type Post } from '../../../lib/blog';
+
+// 記事が1本以上あるカテゴリだけページを作る
+export async function getStaticPaths() {
+  const all = await getPosts();
+  return CATEGORIES.map((c) => ({ c, posts: all.filter((p) => p.data.category === c.name) }))
+    .filter((x) => x.posts.length > 0)
+    .map(({ c, posts }) => ({ params: { cat: c.slug }, props: { c, posts, all } }));
+}
+interface Props { c: (typeof CATEGORIES)[number]; posts: Post[]; all: Post[] }
+const { c, posts, all } = Astro.props;
+const s = c.series ? SERIES[c.series] : null;
+const usedCategories = all.map((p) => p.data.category);
+---
+<BlogListPage
+  title={`${c.name}｜${s ? s.label : 'コラム'}｜nekoyashiki`}
+  description={`nekoyashiki のコラム${s ? `「${s.label}」` : ''}から、「${c.name}」の記事をまとめています。${s ? s.lead : ''}`}
+  heading={c.name}
+  eyebrow={s ? s.en : 'NEWS'}
+  lead={s ? `「${s.label}」の中から、「${c.name}」の記事を集めました。` : 'nekoyashiki からのお知らせです。'}
+  posts={posts}
+  series={c.series ?? 'all'}
+  category={c.name}
+  usedCategories={usedCategories}
+/>
