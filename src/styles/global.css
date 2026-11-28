@@ -42,7 +42,8 @@ h1, h2, h3, h4 { word-break: auto-phrase; overflow-wrap: anywhere; }
 h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
 img, svg { display: block; max-width: 100%; }
 a { color: var(--head); }
-a:hover { color: var(--green); }
+/* ホバーはデザイン（プレビュー）どおり：本文中の文字リンクだけ緑にする。ボタン・カード・メニューは変化させない */
+main a:not([class]):hover { color: var(--green); }
 :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
 .section--green :focus-visible { outline-color: var(--white); }
 .hv { font-family: var(--hv); }
@@ -59,7 +60,7 @@ a:hover { color: var(--green); }
 @media (min-width: 768px) { .sp-only { display: none !important; } }
 
 /* ---------- レイアウト ---------- */
-.container { max-width: 1360px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+.container { max-width: calc(1360px + var(--gutter) * 2); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 .section { padding: var(--sec) 0; }
 .section--light { background: var(--mint-light); }
 .section--mint { background: var(--mint); }
@@ -103,19 +104,14 @@ a:hover { color: var(--green); }
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 56px; padding: 0 30px; border-radius: 999px;
   font-family: var(--jp); font-weight: 700; font-size: 16px; line-height: 1.35; text-align: center;
-  text-decoration: none; border: 0; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s;
+  text-decoration: none; border: 0; cursor: pointer;
 }
 .btn svg { flex-shrink: 0; }
 .btn--primary { background: var(--green); color: var(--white); }
-.btn--primary:hover { background: var(--green-hover); color: var(--white); }
 .btn--outline { border: 1.5px solid var(--text); color: var(--head); background: var(--white); }
-.btn--outline:hover { border-color: var(--green); color: var(--green); }
 .btn--white { background: var(--white); color: var(--green); }
-.btn--white:hover { background: #e7f4ee; color: var(--green); }
 .btn--outline-white { border: 1.5px solid var(--white); color: var(--white); background: transparent; }
-.btn--outline-white:hover { background: rgba(255, 255, 255, .12); color: var(--white); }
 .btn--white-plain { background: var(--white); color: var(--head); }
-.btn--white-plain:hover { color: var(--green); }
 .btn--xs { min-height: 44px; padding: 0 14px; font-size: 13px; gap: 6px; }
 .btn--sm { min-height: 48px; padding: 0 24px; font-size: 15px; gap: 8px; }
 .btn--md, .btn--md-sub { min-height: 56px; padding: 0 30px; font-size: 16px; }
@@ -165,7 +161,7 @@ a:hover { color: var(--green); }
 /* ---------- ヘッダー ---------- */
 .site-header { background: var(--white); border-bottom: 1px solid #e6e6e6; position: relative; z-index: 50; }
 .site-header__inner {
-  max-width: 1360px; margin: 0 auto; padding: 0 var(--gutter); height: 92px;
+  max-width: calc(1360px + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); height: 92px;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .gnav { display: flex; align-items: center; gap: 32px; }
@@ -173,7 +169,6 @@ a:hover { color: var(--green); }
   display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 15px; color: var(--text);
 }
 .gnav__link[aria-current='page'] { color: var(--head); font-weight: 700; box-shadow: inset 0 -2px 0 var(--green-deco); }
-.gnav__link:hover { color: var(--green); }
 .site-header__sp { display: none; align-items: center; gap: 2px; }
 .menu-toggle {
   width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
@@ -292,16 +287,13 @@ a:hover { color: var(--green); }
 /* ---------- 写真のダミー枠 ---------- */
 .dummy {
   position: relative; display: flex; align-items: flex-end; padding: 20px; border-radius: 4px; overflow: hidden;
-  background-color: #eef3f1; color: #9db8ad;
-  background-image: radial-gradient(currentColor 1px, transparent 1.2px); background-size: 18px 18px;
-  font-family: var(--hv); font-size: 13px; letter-spacing: 0.1em; line-height: 1.5;
+  background: #e9edeb; font-family: var(--hv); font-size: 13px; letter-spacing: 0.1em; line-height: 1.5; color: var(--text);
 }
-.dummy__mark { position: absolute; left: 50%; top: 50%; width: clamp(40px, 22%, 96px); height: auto; transform: translate(-50%, -50%); color: #7fa898; opacity: 0.55; }
-.dummy__cap { position: relative; padding: 4px 10px; border-radius: 999px; background: var(--white); color: var(--head); font-family: var(--jp); font-weight: 700; letter-spacing: 0.04em; }
-.dummy--2 { background-color: #e6efeb; color: #a9c4b9; }
-.dummy--3 { background-color: #dfeae5; color: #a2bfb3; }
-.dummy--green { background-color: #217f5e; color: #3d9675; }
-.dummy--green .dummy__mark { color: #ffffff; opacity: 0.35; }
+.dummy__mark { display: none; }
+.dummy__cap { position: relative; }
+.dummy--2 { background: #dde3e0; }
+.dummy--3 { background: #d4dbd8; }
+.dummy--green { background: #217f5e; color: var(--white); }
 @media (max-width: 767px) { .dummy { padding: 10px; font-size: 11px; letter-spacing: 0.08em; } }
 
 /* ---------- 背景の猫 ---------- */
@@ -425,10 +417,8 @@ a:hover { color: var(--green); }
 .entry__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 32px; }
 .entry-card {
   display: flex; flex-direction: column; background: var(--white); text-decoration: none; color: var(--text);
-  border-radius: 4px; overflow: hidden; transition: box-shadow .2s;
+  border-radius: 4px; overflow: hidden;
 }
-.entry-card:hover { color: var(--text); box-shadow: 0 6px 24px rgba(0, 0, 0, .06); }
-.entry-card:hover .btn { background: var(--green-hover); }
 .entry-card__photo { height: 300px; border-radius: 0; padding: 18px; }
 .entry-card__body { padding: 40px 44px 44px; display: flex; flex-direction: column; gap: 14px; }
 .entry-card__en { font-family: var(--hv); font-size: 14px; letter-spacing: 0.16em; color: var(--green); }
@@ -512,7 +502,6 @@ a:hover { color: var(--green); }
   background: var(--white); border-radius: 4px; padding: 36px 32px 40px; display: flex; flex-direction: column; gap: 16px;
   min-height: 250px; text-decoration: none; color: var(--text);
 }
-a.svc-card:hover { color: var(--text); box-shadow: 0 6px 24px rgba(0, 0, 0, .06); }
 .svc-card--pick { border: 2px solid var(--green-deco); padding: 34px 30px 38px; }
 .svc-card__top { display: flex; justify-content: space-between; align-items: flex-start; }
 .svc-card__icon { width: 34px; height: 34px; color: var(--green-deco); }
@@ -523,7 +512,6 @@ a.svc-card:hover { color: var(--text); box-shadow: 0 6px 24px rgba(0, 0, 0, .06)
 .badge-pick { font-family: var(--hv); font-size: 12px; letter-spacing: 0.12em; padding: 2px 10px; border-radius: 999px; background: var(--green); color: var(--white); line-height: 1.6; }
 .badge-line { font-size: 13px; border: 1px solid var(--text); border-radius: 999px; padding: 1px 10px; line-height: 1.6; }
 .svc-card--all { background: var(--mint); justify-content: space-between; gap: 18px; color: var(--head); }
-.svc-card--all:hover { color: var(--head); }
 .svc-card--all .eyebrow-plain { font-family: var(--hv); font-size: 14px; letter-spacing: 0.16em; }
 .svc-card--all .btn { align-self: flex-start; padding: 0 20px; gap: 10px; font-size: 15px; }
 .svc-all-sp { display: none; }
@@ -650,7 +638,7 @@ a.svc-card:hover { color: var(--text); box-shadow: 0 6px 24px rgba(0, 0, 0, .06)
 /* ---------- 最後のCTA ---------- */
 .cta-band { background: var(--mint); padding: 120px var(--gutter); }
 .cta-box {
-  max-width: 1120px; margin: 0 auto; background: var(--white); border-radius: 4px; padding: 88px 80px;
+  max-width: 1280px; margin: 0 auto; background: var(--white); border-radius: 4px; padding: 88px 80px;
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px;
 }
 .cta-box__label { font-family: var(--hv); font-size: 14px; letter-spacing: 0.16em; }
@@ -841,7 +829,6 @@ a.svc-card:hover { color: var(--text); box-shadow: 0 6px 24px rgba(0, 0, 0, .06)
 /* ---------- 採用情報 ---------- */
 .pills { margin-top: 72px; display: flex; flex-wrap: wrap; gap: 10px; }
 .pills a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: var(--mint-light); color: var(--head); text-decoration: none; font-size: 15px; }
-.pills a:hover { color: var(--green); }
 @media (max-width: 767px) { .pills { margin-top: 40px; gap: 8px; } .pills a { padding: 0 16px; font-size: 14px; } }
 .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 64px; }
 .two-col .h2 { margin-bottom: 40px; font-size: clamp(28px, 3vw, 40px); }
