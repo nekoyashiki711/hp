@@ -1,0 +1,22 @@
+---
+import { fmtDate, isoDate, seriesLabel, type Post } from '../lib/blog';
+interface Props { posts: Post[]; showSeries?: boolean }
+const { posts, showSeries = true } = Astro.props;
+---
+<ul class="post-list">
+  {posts.map((p) => (
+    <li class="post-item">
+      <a href={`/blog/${p.id}/`} class="post-item__link">
+        <p class="post-item__meta">
+          <time datetime={isoDate(p.data.date)}>{fmtDate(p.data.date)}</time>
+          {showSeries && seriesLabel(p) && <span class="post-item__series">{seriesLabel(p)}</span>}
+          <span class="post-item__cat">{p.data.category}</span>
+          {p.data.pr && <span class="post-item__pr">PR</span>}
+          {p.data.draft && <span class="post-item__draft">下書き</span>}
+        </p>
+        <h2 class="post-item__title">{p.data.title}</h2>
+        <p class="post-item__desc">{p.data.description}</p>
+      </a>
+    </li>
+  ))}
+</ul>

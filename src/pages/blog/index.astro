@@ -1,43 +1,15 @@
 ---
-import Base from '../../layouts/Base.astro';
-import CtaSection from '../../components/CtaSection.astro';
-import { getPosts, fmtDate, isoDate } from '../../lib/blog';
+import BlogListPage from '../../components/BlogListPage.astro';
+import { getPosts } from '../../lib/blog';
 const posts = await getPosts();
 ---
-<Base
-  title="コラム｜nekoyashiki（宮城の業務IT化・HP・集客のヒント）"
-  description="宮城県仙台市の nekoyashiki のコラム。運送・建築の現場の仕事を軽くするITの使い方、ホームページや集客のヒント、お知らせをお届けします。"
->
-  <section class="sub-hero">
-    <div class="container">
-      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span aria-current="page">コラム</span></nav>
-      <div class="sub-hero__grid sub-hero__text sub-hero__text--narrow">
-        <p class="eyebrow" lang="en">COLUMN</p>
-        <h1 class="sub-hero__title">コラム</h1>
-        <p class="sub-hero__lead">現場の仕事を軽くするITの使い方や、ホームページ・集客のヒントを、少しずつお届けします。</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--light">
-    <div class="container">
-      {posts.length === 0 ? (
-        <p class="soon">記事を準備しています。</p>
-      ) : (
-        <ul class="post-list">
-          {posts.map((p) => (
-            <li class="post-item">
-              <a href={`/blog/${p.id}/`} class="post-item__link">
-                <p class="post-item__meta"><time datetime={isoDate(p.data.date)}>{fmtDate(p.data.date)}</time><span class="post-item__cat">{p.data.category}</span>{p.data.draft && <span class="post-item__draft">下書き</span>}</p>
-                <h2 class="post-item__title">{p.data.title}</h2>
-                <p class="post-item__desc">{p.data.description}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  </section>
-
-  <CtaSection title="まずは、お話から。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />
-</Base>
+<BlogListPage
+  title="コラム｜nekoyashiki（宮城の仕事のヒントと、東北の暮らし）"
+  description="宮城県仙台市の nekoyashiki のコラム。運送・建築や事務の仕事を軽くするヒントの「しごとの話」と、宮城・東北の山や温泉、食、祭りを紹介する「ていねいな暮らし」をお届けします。"
+  heading="コラム"
+  eyebrow="COLUMN"
+  lead="仕事を軽くするヒントの「しごとの話」と、宮城・東北の楽しみ方を紹介する「ていねいな暮らし」。2つのテーマで書いています。"
+  posts={posts}
+  series="all"
+  usedCategories={posts.map((p) => p.data.category)}
+/>

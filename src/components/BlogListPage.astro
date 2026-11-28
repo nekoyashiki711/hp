@@ -1,0 +1,81 @@
+---
+// コラムの一覧ページ共通（すべて／系統／カテゴリ）
+import Base from '../layouts/Base.astro';
+import CtaSection from './CtaSection.astro';
+import PostList from './PostList.astro';
+import { SERIES, CATEGORIES, categoryPath, type SeriesKey } from '../config/blog';
+import { PATHS, SITE } from '../config/site';
+import type { Post } from '../lib/blog';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  eyebrow: string;
+  lead: string;
+  posts: Post[];
+  /** 今いる系統（タブの選択状態とカテゴリ一覧に使う）。'all' は全記事 */
+  series: SeriesKey | 'all';
+  /** カテゴリページのときのカテゴリ名 */
+  category?: string;
+  /** カテゴリが空でも出すかどうか（本数0のカテゴリは隠す） */
+  usedCategories: string[];
+}
+const { title, description, heading, eyebrow, lead, posts, series, category, usedCategories } = Astro.props;
+const tabs = [
+  { key: 'all', label: 'すべて', href: PATHS.blog },
+  ...(Object.keys(SERIES) as SeriesKey[]).map((k) => ({ key: k, label: SERIES[k].label, href: SERIES[k].path })),
+];
+const cats = CATEGORIES.filter((c) => (series === 'all' ? c.series !== null : c.series === series) && usedCategories.includes(c.name));
+const crumbs = [
+  { name: 'コラム', href: PATHS.blog },
+  ...(series !== 'all' ? [{ name: SERIES[series].label, href: SERIES[series].path }] : []),
+  ...(category ? [{ name: category, href: categoryPath(category) }] : []),
+];
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [{ name: 'トップ', href: '/' }, ...crumbs].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, SITE.url).href })),
+};
+---
+<Base title={title} description={description} noindex={posts.length === 0}>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} slot="head" />
+  <section class="sub-hero">
+    <div class="container">
+      <nav class="crumb" aria-label="パンくずリスト">
+        <a href="/">トップ</a>
+        {crumbs.map((c, i) => (
+          <>
+            <span aria-hidden="true">/</span>
+            {i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <a href={c.href}>{c.name}</a>}
+          </>
+        ))}
+      </nav>
+      <div class="sub-hero__grid sub-hero__text sub-hero__text--narrow">
+        <p class="eyebrow" lang="en">{eyebrow}</p>
+        <h1 class="sub-hero__title">{heading}</h1>
+        <p class="sub-hero__lead">{lead}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <nav class="blog-tabs" aria-label="コラムの系統">
+        {tabs.map((t) => (
+          <a href={t.href} class:list={['blog-tabs__a', { 'is-current': t.key === series }]} aria-current={t.key === series && !category ? 'page' : undefined}>{t.label}</a>
+        ))}
+      </nav>
+      {cats.length > 0 && (
+        <ul class="blog-cats" aria-label="カテゴリ">
+          {cats.map((c) => (
+            <li><a href={categoryPath(c.name)} class:list={['blog-cats__a', { 'is-current': c.name === category }]} aria-current={c.name === category ? 'page' : undefined}>{c.name}</a></li>
+          ))}
+        </ul>
+      )}
+      {posts.length === 0 ? <p class="soon">記事を準備しています。</p> : <PostList posts={posts} showSeries={series === 'all'} />}
+    </div>
+  </section>
+
+  <CtaSection title="まずは、お話から。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />
+</Base>

@@ -2,15 +2,25 @@
 import Base from '../../layouts/Base.astro';
 import CtaSection from '../../components/CtaSection.astro';
 import { render } from 'astro:content';
-import { getPosts, fmtDate, isoDate, type Post } from '../../lib/blog';
+import { getPosts, fmtDate, isoDate, relatedPosts, seriesOf, type Post } from '../../lib/blog';
+import { SERIES, categoryPath } from '../../config/blog';
+import PostList from '../../components/PostList.astro';
 import { SITE, PATHS } from '../../config/site';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return posts.map((post, i) => ({ params: { slug: post.id }, props: { post, newer: posts[i - 1], older: posts[i + 1] } }));
+  // 前後の記事は同じ系統の中でたどる（お知らせはお知らせ同士）
+  return posts.map((post) => {
+    const same = posts.filter((p) => seriesOf(p) === seriesOf(post));
+    const i = same.indexOf(post);
+    return { params: { slug: post.id }, props: { post, newer: same[i - 1], older: same[i + 1], related: relatedPosts(post, posts) } };
+  });
 }
-interface Props { post: Post; newer?: Post; older?: Post }
-const { post, newer, older } = Astro.props;
+interface Props { post: Post; newer?: Post; older?: Post; related: Post[] }
+const { post, newer, older, related } = Astro.props;
+const sKey = seriesOf(post);
+const series = sKey ? SERIES[sKey] : null;
+const catHref = categoryPath(post.data.category);
 const { Content } = await render(post);
 const url = new URL(`/blog/${post.id}/`, SITE.url).href;
 const ld = [
@@ -22,6 +32,8 @@ const ld = [
     datePublished: isoDate(post.data.date),
     dateModified: isoDate(post.data.updated ?? post.data.date),
     mainEntityOfPage: url,
+    articleSection: series ? `${series.label} / ${post.data.category}` : post.data.category,
+    keywords: post.data.tags.join(','),
     image: new URL('/og.png', SITE.url).href,
     author: { '@type': 'Person', name: SITE.representative, url: new URL(PATHS.about, SITE.url).href },
     publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: new URL('/icon-512.png', SITE.url).href } },
@@ -32,7 +44,8 @@ const ld = [
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'トップ', item: SITE.url + '/' },
       { '@type': 'ListItem', position: 2, name: 'コラム', item: new URL(PATHS.blog, SITE.url).href },
-      { '@type': 'ListItem', position: 3, name: post.data.title, item: url },
+      ...(series ? [{ '@type': 'ListItem', position: 3, name: series.label, item: new URL(series.path, SITE.url).href }] : []),
+      { '@type': 'ListItem', position: series ? 4 : 3, name: post.data.title, item: url },
     ],
   },
 ];
@@ -41,12 +54,14 @@ const ld = [
   <script type="application/ld+json" set:html={JSON.stringify(ld)} slot="head" />
   <section class="sub-hero sub-hero--post">
     <div class="container">
-      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><a href={PATHS.blog}>コラム</a><span aria-hidden="true">/</span><span aria-current="page">{post.data.title}</span></nav>
+      <nav class="crumb" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><a href={PATHS.blog}>コラム</a><span aria-hidden="true">/</span>{series && <><a href={series.path}>{series.label}</a><span aria-hidden="true">/</span></>}<span aria-current="page">{post.data.title}</span></nav>
       <div class="post-head">
         <p class="post-item__meta">
           <time datetime={isoDate(post.data.date)}>{fmtDate(post.data.date)}</time>
           {post.data.updated && <span>（更新 <time datetime={isoDate(post.data.updated)}>{fmtDate(post.data.updated)}</time>）</span>}
-          <span class="post-item__cat">{post.data.category}</span>
+          {series && <a href={series.path} class="post-item__series">{series.label}</a>}
+          <a href={catHref} class="post-item__cat">{post.data.category}</a>
+          {post.data.pr && <span class="post-item__pr">PR</span>}
         </p>
         <h1 class="post-head__title">{post.data.title}</h1>
         <p class="post-head__author">書いた人：{SITE.name} 代表 {SITE.representative}（{SITE.nickname}）</p>
@@ -55,14 +70,26 @@ const ld = [
   </section>
   <section class="section section--post">
     <div class="container">
+      {post.data.pr && (
+        <p class="post-pr">この記事は広告を含みます（PR）。{post.data.sponsor ? `${post.data.sponsor}さまから広告料・紹介料をいただいて掲載しています。` : '掲載にあたり広告料・紹介料をいただいています。'}</p>
+      )}
       <article class="prose post-body">
         <Content />
       </article>
+      {post.data.tags.length > 0 && (
+        <ul class="post-tags" aria-label="タグ">{post.data.tags.map((t) => <li>#{t}</li>)}</ul>
+      )}
+      {related.length > 0 && (
+        <section class="post-related" aria-labelledby="related-h">
+          <h2 id="related-h" class="post-related__h">{series ? `「${series.label}」のほかの記事` : 'ほかのお知らせ'}</h2>
+          <PostList posts={related} showSeries={false} />
+        </section>
+      )}
       <nav class="post-nav" aria-label="ほかの記事">
-        {newer ? <a href={`/blog/${newer.id}/`} class="post-nav__a"><span>新しい記事</span>{newer.data.title}</a> : <span />}
+        {newer ? <a href={`/blog/${newer.id}/`} class="post-nav__a"><span>次の記事</span>{newer.data.title}</a> : <span />}
         {older ? <a href={`/blog/${older.id}/`} class="post-nav__a post-nav__a--older"><span>前の記事</span>{older.data.title}</a> : <span />}
       </nav>
-      <p class="post-back"><a href={PATHS.blog} class="btn btn--outline btn--md">コラムの一覧へ</a></p>
+      <p class="post-back"><a href={series ? series.path : PATHS.blog} class="btn btn--outline btn--md">{series ? `「${series.label}」の一覧へ` : 'コラムの一覧へ'}</a></p>
     </div>
   </section>
   <CtaSection title="読んで気になったら、<br />ひと言どうぞ。" lead="ご相談は無料です。ご予算や状況に合わせて、ちょうどいい形をご提案します。" />
