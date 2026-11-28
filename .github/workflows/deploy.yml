@@ -1,9 +1,8 @@
 name: エックスサーバーに公開
 
-# main に取り込まれたら自動で公開。Actions 画面から手動でも実行できます。
+# 自動公開は止めています（サーバーをバックアップから戻したため。main に取り込んでも上書きしません）。
+# 公開するときは、Actions 画面の「Run workflow」から手動で実行してください。
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
